@@ -1,0 +1,7 @@
+{
+  "branches": 63,
+  "functions": 69,
+  "lines": 90,
+  "statements": 90,
+  "_comment": "This threshold can be used for example if we want to use husky as commit hook. A commit will fail if it does not match the expected coverage threshold"
+}
