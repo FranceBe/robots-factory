@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button Common behaviour should match snapshot 1`] = `
+.c0 {
+  height: 64px;
+  border: none;
+  background-color: #DB93B0;
+  padding: 8px;
+  color: #FFF;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  min-width: 184px;
+}
+
+.c0:hover {
+  background-color: #E6B3C8;
+}
+
+.c0:disabled,
+.c0:disabled:hover {
+  color: #E5E5E5;
+  background-color: #99677B;
+  cursor: not-allowed;
+}
+
+.c0 svg {
+  position: relative;
+  bottom: 15px;
+  left: 75px;
+  -webkit-filter: drop-shadow(0 0 4px #6A6C71);
+  filter: drop-shadow(0 0 4px #6A6C71);
+}
+
+.c1 {
+  height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  data-for="button-tooltip1"
+  data-html="true"
+  data-testid="button-container"
+>
+  <button
+    buttontype="primary"
+    class="c0"
+  >
+    <div
+      class="c1"
+    >
+      Button text
+    </div>
+    <div
+      class="__react_component_tooltip ta7448cad-1864-4ed9-95fe-e9006661c33d place-top type-dark"
+      data-id="tooltip"
+      id="button-tooltip1"
+    >
+      <style
+        aria-hidden="true"
+      >
+        
+  	.ta7448cad-1864-4ed9-95fe-e9006661c33d {
+	    color: #fff;
+	    background: #222;
+	    border: 1px solid transparent;
+  	}
+
+  	.ta7448cad-1864-4ed9-95fe-e9006661c33d.place-top {
+        margin-top: -10px;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-top::before {
+        border-top: 8px solid transparent;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-top::after {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        bottom: -6px;
+        left: 50%;
+        margin-left: -8px;
+        border-top-color: #222;
+        border-top-style: solid;
+        border-top-width: 6px;
+    }
+
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-bottom {
+        margin-top: 10px;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-bottom::before {
+        border-bottom: 8px solid transparent;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-bottom::after {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        top: -6px;
+        left: 50%;
+        margin-left: -8px;
+        border-bottom-color: #222;
+        border-bottom-style: solid;
+        border-bottom-width: 6px;
+    }
+
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-left {
+        margin-left: -10px;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-left::before {
+        border-left: 8px solid transparent;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-left::after {
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        right: -6px;
+        top: 50%;
+        margin-top: -4px;
+        border-left-color: #222;
+        border-left-style: solid;
+        border-left-width: 6px;
+    }
+
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-right {
+        margin-left: 10px;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-right::before {
+        border-right: 8px solid transparent;
+    }
+    .ta7448cad-1864-4ed9-95fe-e9006661c33d.place-right::after {
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        left: -6px;
+        top: 50%;
+        margin-top: -4px;
+        border-right-color: #222;
+        border-right-style: solid;
+        border-right-width: 6px;
+    }
+  
+      </style>
+    </div>
+  </button>
+</div>
+`;
