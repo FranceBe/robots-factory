@@ -5,7 +5,12 @@ const baseDir = __dirname
 
 module.exports = {
   clearMocks: true,
-  collectCoverageFrom: ['src/**/*.component.tsx', 'src/**/*.container.tsx', 'src/styles/*.ts'],
+  collectCoverageFrom: [
+    'src/**/*.component.tsx',
+    'src/**/*.container.tsx',
+    'src/**/*.service.ts',
+    'src/styles/*.ts',
+  ],
   coverageDirectory: resolve(baseDir, 'dist', 'coverage'),
   coverageReporters: ['text', 'html'],
   coverageThreshold: {
