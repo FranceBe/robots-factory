@@ -22,12 +22,14 @@ export const Button: React.FC<ButtonProps> = ({
       <ButtonContainer buttontype={buttonType} {...rest}>
         <ContentContainer>{rest.children}</ContentContainer>
         {isActive && <Icon type={'robot'} />}
-        <ReactTooltip
-          html={true}
-          backgroundColor={palette.white}
-          textColor={palette.grey_primary}
-          id={`button-tooltip${uniqueIndex}`}
-        />
+        {tooltipText && (
+          <ReactTooltip
+            html={true}
+            backgroundColor={palette.white}
+            textColor={palette.grey_primary}
+            id={`button-tooltip${uniqueIndex}`}
+          />
+        )}
       </ButtonContainer>
     </div>
   )
