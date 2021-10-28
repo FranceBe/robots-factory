@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Totals component Common behaviour should match snapshot 1`] = `
+.c0 {
+  font-size: 1.125rem;
+  color: #FFF;
+  background-color: #DB93B0;
+  padding: 8px 16px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+<div
+  class="c0"
+  type="primary"
+>
+  <div>
+    Label
+  </div>
+  <div>
+    10
+  </div>
+</div>
+`;

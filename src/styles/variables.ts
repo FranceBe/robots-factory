@@ -31,7 +31,7 @@ export const spaces: { [key: string]: string } = {
 // Font sizes to use in project
 export const fontSizes: { [key: string]: string } = {
   large: '1.5rem',
-  medium: '1.25rem',
+  medium: '1.125rem',
   regular: '1rem',
   small: '0.75rem',
 }
