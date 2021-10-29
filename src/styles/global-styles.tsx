@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import { fontSizes, palette } from 'styles/variables'
+import { fontSizes, palette, spaces } from 'styles/variables'
 
 import RobotoRegular from '../../static/assets/fonts/Roboto-Regular.ttf'
 
@@ -13,7 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
     font-size: ${fontSizes.regular};
-    margin: 1.5em;
+    margin: ${spaces.medium};
     background-color: ${palette.grey_quaternary};
     color: ${palette.grey_primary};
   }

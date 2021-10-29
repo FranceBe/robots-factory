@@ -1,7 +1,7 @@
 // Use index file to export both named and default import
 // So the main component is declared in a specific file, not in index
-import AppContainer, { App } from 'containers/App/App.container'
+import HomeDefault, { Home } from 'pages/Home/Home.page'
 
-export { App }
+export { Home }
 
-export default AppContainer
+export default HomeDefault
