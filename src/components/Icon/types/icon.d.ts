@@ -1,4 +1,6 @@
-export type IconProps = {
+import { FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
+
+export type IconProps = Partial<FontAwesomeIconProps> & {
   type: IconType
 }
 

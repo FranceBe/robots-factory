@@ -1,0 +1,166 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RobotCard component should match snapshot 1`] = `
+<div
+  class="sc-gKAaRy hQwNST"
+>
+  <div
+    class="sc-iCoGMd hDMOLj"
+  >
+    <svg
+      aria-hidden="true"
+      class="svg-inline--fa fa-robot fa-w-20 fa-3x "
+      data-icon="robot"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      viewBox="0 0 640 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z"
+        fill="currentColor"
+      />
+    </svg>
+    <span>
+      Robot 
+      1
+    </span>
+  </div>
+  <div
+    class="sc-fujyAs"
+  >
+    <div
+      class="sc-pNWdM ecOhoC"
+    >
+      <div
+        data-for="button-tooltip1"
+        data-html="true"
+        data-testid="button-container"
+      >
+        <button
+          buttontype="primary"
+          class="sc-bdnxRM kHkzzW"
+        >
+          <div
+            class="sc-gtsrHT FiSsO"
+          >
+            Miner Foo
+          </div>
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-robot fa-w-20 "
+            data-icon="robot"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 640 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M32,224H64V416H32A31.96166,31.96166,0,0,1,0,384V256A31.96166,31.96166,0,0,1,32,224Zm512-48V448a64.06328,64.06328,0,0,1-64,64H160a64.06328,64.06328,0,0,1-64-64V176a79.974,79.974,0,0,1,80-80H288V32a32,32,0,0,1,64,0V96H464A79.974,79.974,0,0,1,544,176ZM264,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,264,256Zm-8,128H192v32h64Zm96,0H288v32h64ZM456,256a40,40,0,1,0-40,40A39.997,39.997,0,0,0,456,256Zm-8,128H384v32h64ZM640,256V384a31.96166,31.96166,0,0,1-32,32H576V224h32A31.96166,31.96166,0,0,1,640,256Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        data-for="button-tooltip1"
+        data-html="true"
+        data-testid="button-container"
+      >
+        <button
+          buttontype="primary"
+          class="sc-bdnxRM kHkzzW"
+        >
+          <div
+            class="sc-gtsrHT FiSsO"
+          >
+            Miner Bar
+          </div>
+        </button>
+      </div>
+      <div
+        data-for="button-tooltip1"
+        data-html="true"
+        data-testid="button-container"
+      >
+        <button
+          buttontype="primary"
+          class="sc-bdnxRM kHkzzW"
+          disabled=""
+        >
+          <div
+            class="sc-gtsrHT FiSsO"
+          >
+            Assembler Foobar
+          </div>
+        </button>
+      </div>
+      <div
+        data-for="button-tooltip1"
+        data-html="true"
+        data-testid="button-container"
+      >
+        <button
+          buttontype="secondary"
+          class="sc-bdnxRM kdGdbW"
+          disabled=""
+        >
+          <div
+            class="sc-gtsrHT FiSsO"
+          >
+            Acheter un robot
+          </div>
+        </button>
+      </div>
+    </div>
+    <div
+      class="sc-jrsJWt hKtNJe"
+    >
+      <div
+        class="sc-dlnjwi gQEkhQ"
+        data-testid="loading-bar"
+      >
+        <div
+          class="sc-hKFxyN bmKIvQ"
+        >
+          <div
+            class="sc-jSFjdj bfIjBg"
+            data-testid="filled-bar"
+            filled="50"
+          />
+        </div>
+        <div
+          class="sc-eCApnc bChZKY"
+        >
+          0.5
+           s
+        </div>
+      </div>
+      <div
+        class="sc-kEqXSa kLYlHg"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-spinner fa-w-16 fa-spin "
+          data-icon="spinner"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M304 48c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48zm-48 368c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zm208-208c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.49-48-48-48zM96 256c0-26.51-21.49-48-48-48S0 229.49 0 256s21.49 48 48 48 48-21.49 48-48zm12.922 99.078c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.491-48-48-48zm294.156 0c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48c0-26.509-21.49-48-48-48zM108.922 60.922c-26.51 0-48 21.49-48 48s21.49 48 48 48 48-21.49 48-48-21.491-48-48-48z"
+            fill="currentColor"
+          />
+        </svg>
+        <span>
+          Le robot est en train de miner du Foo. Cela prend 1s / Foo.
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;

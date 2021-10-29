@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react/types-6-0'
 import { LoadingBar } from 'components/LoadingBar'
-import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
+import { LoadingBarProps } from 'components/LoadingBar/types/loadingBar'
 import React from 'react'
 import useState from 'storybook-addon-state'
 

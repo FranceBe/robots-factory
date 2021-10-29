@@ -20,6 +20,7 @@ export const TextContainer = styled.div`
   left: 94%;
   font-size: ${fontSizes.small};
   z-index: 2;
+  width: fit-content;
 `
 
 export const FilledBar = styled((props: PropsWithChildren<{ filled: number }>) => (

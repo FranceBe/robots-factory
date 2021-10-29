@@ -3,7 +3,7 @@ import 'jest-styled-components'
 
 import { render, screen } from '@testing-library/react'
 import { LoadingBar } from 'components/LoadingBar'
-import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
+import { LoadingBarProps } from 'components/LoadingBar/types/loadingBar'
 import React from 'react'
 
 describe('LoadingBar component', () => {
@@ -20,7 +20,7 @@ describe('LoadingBar component', () => {
     // In this case, timeLeft is 50 and timeBase is 100, so the result
     // of getFilledBarWidth(50, 100) should be 50
 
-    const filledBar = screen.getByTestId('filledBar')
+    const filledBar = screen.getByTestId('filled-bar')
     expect(filledBar.getAttribute('filled')).toBe('50')
   })
   it('should render timeLeft as text with an "s" as second', () => {
