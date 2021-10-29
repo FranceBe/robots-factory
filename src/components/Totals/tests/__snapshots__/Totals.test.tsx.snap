@@ -22,7 +22,8 @@ exports[`Totals component Common behaviour should match snapshot 1`] = `
 }
 
 <div
-  class="c0"
+  class="c0 totals-component"
+  data-testid="totals-component"
   type="primary"
 >
   <div>
