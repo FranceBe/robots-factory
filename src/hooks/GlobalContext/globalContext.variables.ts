@@ -4,7 +4,7 @@ export const defaultContextValues: ContextType = {
   bar: 0,
   foo: 0,
   foobar: 0,
-  robots: 2,
+  robot: 2,
 }
 
 export const defaultContext: GlobalContextType = {

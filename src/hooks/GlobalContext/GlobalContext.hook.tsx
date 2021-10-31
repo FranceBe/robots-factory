@@ -1,4 +1,4 @@
-import { defaultContext } from 'hooks/GlobalContext/globalContext.variables'
+import { defaultContext } from 'hooks/globalContext/globalContext.variables'
 import { GlobalContextType } from 'hooks/types/globalContext'
 import { createContext, useContext } from 'react'
 

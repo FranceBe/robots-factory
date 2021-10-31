@@ -10,6 +10,7 @@ module.exports = {
     'src/**/*.container.tsx',
     'src/**/*.service.ts',
     'src/styles/*.ts',
+    'src/hooks/useTimer/*.tsx',
   ],
   coverageDirectory: resolve(baseDir, 'dist', 'coverage'),
   coverageReporters: ['text', 'html'],
