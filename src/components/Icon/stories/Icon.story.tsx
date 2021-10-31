@@ -25,6 +25,9 @@ export const Icons: React.FC = () => (
     <div>
       <Icon type={'failure'} />
     </div>
+    <div>
+      <Icon type={'moving'} />
+    </div>
   </>
 )
 
@@ -44,6 +47,9 @@ export const IconsWithCustomSizes: React.FC = () => (
     <br />
     <div>
       <Icon type={'failure'} size={'4x'} />
+    </div>
+    <div>
+      <Icon type={'moving'} size={'5x'} />
     </div>
   </>
 )
@@ -65,6 +71,9 @@ export const IconsWithAnimation: React.FC = () => (
     <div>
       <Icon type={'failure'} spin />
     </div>
+    <div>
+      <Icon type={'moving'} spin />
+    </div>
   </>
 )
 
@@ -84,6 +93,9 @@ export const IconsWithCustomColors: React.FC = () => (
     <br />
     <div>
       <Icon type={'failure'} color={palette.red_primary} />
+    </div>
+    <div>
+      <Icon type={'moving'} color={palette.grey_primary} />
     </div>
   </>
 )

@@ -4,4 +4,4 @@ export type IconProps = Partial<FontAwesomeIconProps> & {
   type: IconType
 }
 
-export type IconType = 'robot' | 'spinner' | 'failure' | 'success'
+export type IconType = 'robot' | 'spinner' | 'failure' | 'success' | 'moving'

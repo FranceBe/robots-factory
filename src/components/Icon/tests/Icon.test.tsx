@@ -4,12 +4,17 @@
 import '@testing-library/jest-dom/extend-expect'
 
 import { render, screen } from '@testing-library/react'
-import { Icon } from 'components/Icon'
+import { FAIconByIconProps, Icon } from 'components/Icon'
 import { IconProps } from 'components/Icon/types/icon'
 import React from 'react'
 
 describe('Icon component', () => {
   const initTest = (props: IconProps) => render(<Icon {...props} />)
+  describe('FAIconByIconProps', () => {
+    it('should match snapshot', () => {
+      expect(FAIconByIconProps).toMatchSnapshot()
+    })
+  })
   describe('Given type is "robot"', () => {
     it('should match snapshot', () => {
       const { container } = initTest({ type: 'robot' })
@@ -56,6 +61,18 @@ describe('Icon component', () => {
       const successIcon = screen.getByRole('img', { hidden: true })
       expect(successIcon).toBeInTheDocument()
       expect(successIcon).toHaveClass('fa-check')
+    })
+  })
+  describe('Given type is "moving"', () => {
+    it('should match snapshot', () => {
+      const { container } = initTest({ type: 'moving' })
+      expect(container.firstChild).toMatchSnapshot()
+    })
+    it('should render the FA check icon', () => {
+      initTest({ type: 'moving' })
+      const successIcon = screen.getByRole('img', { hidden: true })
+      expect(successIcon).toBeInTheDocument()
+      expect(successIcon).toHaveClass('fa-route')
     })
   })
 })

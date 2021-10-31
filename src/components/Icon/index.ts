@@ -1,5 +1,5 @@
-import IconDefault, { Icon } from 'components/Icon/Icon.component'
+import IconDefault, { FAIconByIconProps, Icon } from 'components/Icon/Icon.component'
 
-export { Icon }
+export { FAIconByIconProps, Icon }
 
 export default IconDefault
