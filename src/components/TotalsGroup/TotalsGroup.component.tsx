@@ -5,7 +5,7 @@ import React from 'react'
 
 export const TotalsGroup: React.FC<{ content: TotalsProps[] }> = ({ content }) => {
   return (
-    <CardContainer>
+    <CardContainer data-testid={'totals-group'}>
       {content &&
         content.map((item) => (
           <Totals key={`${item.label}`} label={item.label} total={item.total} type={item.type} />

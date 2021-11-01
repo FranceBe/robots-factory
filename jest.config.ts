@@ -8,7 +8,9 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.component.tsx',
     'src/**/*.container.tsx',
+    'src/**/*.page.tsx',
     'src/**/*.service.ts',
+    'src/**/*.service.tsx',
     'src/styles/*.ts',
     'src/hooks/useTimer/*.tsx',
   ],

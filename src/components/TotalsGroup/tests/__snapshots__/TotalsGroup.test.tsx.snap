@@ -3,6 +3,7 @@
 exports[`TotalsGroup component should match snapshot 1`] = `
 <div
   class="sc-gtsrHT iNDdFY"
+  data-testid="totals-group"
 >
   <div
     class="sc-bdnxRM kQbngr totals-component"

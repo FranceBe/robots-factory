@@ -9,7 +9,7 @@ export const Title = styled.h1`
 
 export const TitleContainer = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 3;
   width: 100%;
   top: 0;
   background-color: ${palette.grey_quaternary};
@@ -30,4 +30,7 @@ export const ContentContainer = styled.div`
 export const RobotsManagementContainer = styled.div`
   width: 70%;
   margin-bottom: ${spaces.medium};
+  > div {
+    margin-bottom: 16px;
+  }
 `

@@ -1,9 +1,8 @@
 // Global Home container
-import { Icon } from 'components/Icon/Icon.component'
-import { TotalsProps } from 'components/Totals/types/totals'
 import { TotalsGroup } from 'components/TotalsGroup'
 import { RobotManager } from 'containers/RobotManager'
 import { useGlobalContext } from 'hooks/globalContext'
+import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.service'
 import {
   ContentContainer,
   RobotsManagementContainer,
@@ -11,31 +10,33 @@ import {
   TitleContainer,
   TotalsGroupContainer,
 } from 'pages/Home/home.style'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export const Home: React.FC = () => {
-  const { foo, bar, foobar, robot } = useGlobalContext()
-  const totalsContent: TotalsProps[] = [
-    { label: 'Foo', total: foo, type: 'primary' },
-    { label: 'Bar', total: bar, type: 'primary' },
-    { label: 'Foobar', total: foobar, type: 'primary' },
-    { label: <Icon type={'robot'} />, total: robot, type: 'secondary' },
-  ]
+  const { ...context } = useGlobalContext()
+  const { robot } = context
+  const [robotLines, setRobotLines] = useState(arrayFromContextRobotLength(context))
+
+  useEffect(() => {
+    setRobotLines(arrayFromContextRobotLength(context))
+  }, [robot])
 
   return (
-    <div>
+    <>
       <TitleContainer>
         <Title> Robots Factory </Title>
       </TitleContainer>
       <ContentContainer>
         <RobotsManagementContainer>
-          <RobotManager robotId={1} />
+          {robotLines.map((lineKey) => (
+            <RobotManager key={`robot-${lineKey + 1}`} robotId={lineKey + 1} />
+          ))}
         </RobotsManagementContainer>
         <TotalsGroupContainer>
-          <TotalsGroup content={totalsContent} />
+          <TotalsGroup content={getTotalsFromContext(context)} />
         </TotalsGroupContainer>
       </ContentContainer>
-    </div>
+    </>
   )
 }
 
