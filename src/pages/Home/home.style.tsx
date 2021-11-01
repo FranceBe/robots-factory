@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { palette, spaces } from 'styles/variables'
-
 export const Title = styled.h1`
   text-align: center;
   margin-top: ${spaces.medium};
@@ -18,6 +17,7 @@ export const TotalsGroupContainer = styled.div`
   width: 30%;
   position: fixed;
   right: 0;
+  z-index: 3;
 `
 
 export const ContentContainer = styled.div`
