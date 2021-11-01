@@ -14,7 +14,7 @@ export const LoadingBar: React.FC<LoadingBarProps> = ({ timeLeft = 0, timeBase }
       <LoadingBarBackground>
         <FilledBar data-testid={'filled-bar'} filled={getFilledBarWidth(timeLeft, timeBase)} />
       </LoadingBarBackground>
-      <TextContainer>{timeLeft} s</TextContainer>
+      <TextContainer>{Math.round(timeLeft * 100) / 100} s</TextContainer>
     </LoadingBarContainer>
   )
 }

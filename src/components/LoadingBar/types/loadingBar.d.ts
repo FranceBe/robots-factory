@@ -1,4 +1,4 @@
 export type LoadingBarProps = {
   timeLeft?: number
-  timeBase: number
+  timeBase: number | null
 }

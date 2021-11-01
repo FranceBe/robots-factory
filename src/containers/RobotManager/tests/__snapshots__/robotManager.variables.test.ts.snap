@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RobotManager variables barName should match snapshot 1`] = `"bar"`;
+
+exports[`RobotManager variables fooName should match snapshot 1`] = `"foo"`;
+
+exports[`RobotManager variables foobarName should match snapshot 1`] = `"foobar"`;
+
+exports[`RobotManager variables infosIcon should match snapshot 1`] = `
+Object {
+  "bar": Object {
+    "spin": true,
+    "type": "spinner",
+  },
+  "bar_success": Object {
+    "color": "#45B69C",
+    "type": "success",
+  },
+  "foo": Object {
+    "spin": true,
+    "type": "spinner",
+  },
+  "foo_success": Object {
+    "color": "#45B69C",
+    "type": "success",
+  },
+  "foobar": Object {
+    "spin": true,
+    "type": "spinner",
+  },
+  "foobar_fail": Object {
+    "color": "#F45B69",
+    "type": "failure",
+  },
+  "foobar_success": Object {
+    "color": "#45B69C",
+    "type": "success",
+  },
+  "moving": Object {
+    "type": "moving",
+  },
+  "robot": Object {
+    "color": "#45B69C",
+    "type": "success",
+  },
+}
+`;
+
+exports[`RobotManager variables infosText should match snapshot 1`] = `
+Object {
+  "bar": "Le robot est en train de miner du Bar. Cela prend entre 0.5 et 2s / Bar.",
+  "bar_success": "Le robot a fini d'assembler un Bar.",
+  "foo": "Le robot est en train de miner du Foo. Cela prend 1s / Foo.",
+  "foo_success": "Le robot a fini d'assembler un Foo.",
+  "foobar": "Le robot est en train d'assembler un Foobar. Cela prend 2s et a 60% de chance de succès.",
+  "foobar_fail": "Echec : Le robot n'a pas assemblé de Foobar, le Bar a pu être sauvé mais le Foo est perdu.",
+  "foobar_success": "Succès : Le robot a fini d'assembler un Foobar.",
+  "moving": "Le robot est en train de changer d'activité. Cela prend 5s.",
+  "robot": "Succès : Le robot a acheté un nouveau robot.",
+}
+`;
+
+exports[`RobotManager variables requirementsForAFoobar should match snapshot 1`] = `
+Object {
+  "bar": 1,
+  "foo": 1,
+}
+`;
+
+exports[`RobotManager variables requirementsForARobot should match snapshot 1`] = `
+Object {
+  "foo": 6,
+  "foobar": 3,
+}
+`;
+
+exports[`RobotManager variables robotName should match snapshot 1`] = `"robot"`;
+
+exports[`RobotManager variables timeBases should match snapshot 1`] = `
+Object {
+  "foo": 1,
+  "foobar": 2,
+  "moving": 5,
+  "robot": 0,
+}
+`;
+
+exports[`RobotManager variables tooltipTexts should match snapshot 1`] = `
+Object {
+  "foobar": "<p>Requiert <span class=\\"foobar-foo\\">1 Foo</span> et <span class=\\"foobar-bar\\">1 Bar</span>.</p>",
+  "robot": "<p>Requiert <span class=\\"robot-foobar\\">3 Foobar</span>  et <span class=\\"robot-foo\\">6 Foo</span>.</p>",
+}
+`;

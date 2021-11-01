@@ -5,7 +5,7 @@ import { IconProps } from 'components/Icon/types/icon'
 export type RobotCardProps = {
   buttons: ButtonProps[]
   loadingBar: LoadingBarProps
-  iconInfo: IconProps
+  iconInfo?: IconProps
   textInfo: string
   robotId: string | number
 }

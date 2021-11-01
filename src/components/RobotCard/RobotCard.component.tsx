@@ -20,7 +20,7 @@ export const RobotCard: React.FC<RobotCardProps> = ({
   robotId,
 }) => {
   return (
-    <CardBackground>
+    <CardBackground data-testid={'robot-card'}>
       <RobotsContainer>
         <Icon type={'robot'} size={'3x'} />
         <span>Robot {robotId}</span>
@@ -33,7 +33,7 @@ export const RobotCard: React.FC<RobotCardProps> = ({
         <LoadingAndInfoContainer>
           <LoadingBar {...loadingBar} />
           <InfoContainer>
-            <Icon {...iconInfo} />
+            {iconInfo ? <Icon {...iconInfo} /> : <Icon type={'spinner'} color={'transparent'} />}
             <span>{textInfo}</span>
           </InfoContainer>
         </LoadingAndInfoContainer>

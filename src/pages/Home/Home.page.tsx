@@ -2,7 +2,8 @@
 import { Icon } from 'components/Icon/Icon.component'
 import { TotalsProps } from 'components/Totals/types/totals'
 import { TotalsGroup } from 'components/TotalsGroup'
-import { useGlobalContext } from 'hooks/GlobalContext'
+import { RobotManager } from 'containers/RobotManager'
+import { useGlobalContext } from 'hooks/globalContext'
 import {
   ContentContainer,
   RobotsManagementContainer,
@@ -13,20 +14,23 @@ import {
 import React from 'react'
 
 export const Home: React.FC = () => {
-  const { foo, bar, foobar, robots } = useGlobalContext()
+  const { foo, bar, foobar, robot } = useGlobalContext()
   const totalsContent: TotalsProps[] = [
     { label: 'Foo', total: foo, type: 'primary' },
     { label: 'Bar', total: bar, type: 'primary' },
     { label: 'Foobar', total: foobar, type: 'primary' },
-    { label: <Icon type={'robot'} />, total: robots, type: 'secondary' },
+    { label: <Icon type={'robot'} />, total: robot, type: 'secondary' },
   ]
+
   return (
     <div>
       <TitleContainer>
         <Title> Robots Factory </Title>
       </TitleContainer>
       <ContentContainer>
-        <RobotsManagementContainer />
+        <RobotsManagementContainer>
+          <RobotManager robotId={1} />
+        </RobotsManagementContainer>
         <TotalsGroupContainer>
           <TotalsGroup content={totalsContent} />
         </TotalsGroupContainer>

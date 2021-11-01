@@ -3,6 +3,7 @@
 exports[`RobotCard component should match snapshot 1`] = `
 <div
   class="sc-gKAaRy hQwNST"
+  data-testid="robot-card"
 >
   <div
     class="sc-iCoGMd hDMOLj"
@@ -126,7 +127,7 @@ exports[`RobotCard component should match snapshot 1`] = `
           class="sc-hKFxyN bmKIvQ"
         >
           <div
-            class="sc-jSFjdj bfIjBg"
+            class="sc-jSFjdj jeihoh"
             data-testid="filled-bar"
             filled="50"
           />

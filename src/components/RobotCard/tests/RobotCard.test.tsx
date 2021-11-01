@@ -47,13 +47,13 @@ describe('RobotCard component', () => {
   it('should render 3 icons and robot name', () => {
     initTest()
 
-    const robotIcons = screen.getAllByRole('img', { hidden: true })
+    const icons = screen.getAllByRole('img', { hidden: true })
     // 2 robot icons (1 with name and 1 in the active button)
     // 1 spinner icon
-    expect(robotIcons).toHaveLength(3)
-    expect(robotIcons[0]).toHaveClass('fa-robot')
-    expect(robotIcons[1]).toHaveClass('fa-robot')
-    expect(robotIcons[2]).toHaveClass('fa-spinner')
+    expect(icons).toHaveLength(3)
+    expect(icons[0]).toHaveClass('fa-robot')
+    expect(icons[1]).toHaveClass('fa-robot')
+    expect(icons[2]).toHaveClass('fa-spinner')
 
     const robotName = `Robot ${robotId}`
     expect(screen.getByText(robotName)).toBeInTheDocument()

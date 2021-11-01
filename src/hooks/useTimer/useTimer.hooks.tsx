@@ -2,31 +2,47 @@ import { useEffect, useState } from 'react'
 
 export const useTimer = (): {
   timeLeft: number
-  isCounterStarted: boolean
+  status: string
   startCounter: (timeBase: number) => void
+  stopCounter: () => void
 } => {
   const [timeLeft, setTimeLeft] = useState(0)
-  const [isCounterStarted, setCounterStarted] = useState(false)
+  const [hasCounterFinished, setCounterFinished] = useState<boolean | undefined>(undefined)
+  const [status, setStatus] = useState('not-started')
+  let timer: NodeJS.Timer
 
   useEffect(() => {
-    if (isCounterStarted) {
-      timeLeft > 0 && setTimeout(() => countDown(), 100)
-      timeLeft === 0 && setCounterStarted(false)
+    if (hasCounterFinished !== undefined) {
+      if (timeLeft > 0) {
+        timer = setTimeout(() => countDown(), 100)
+      }
+      if (timeLeft === 0) {
+        setCounterFinished(true)
+        setStatus('done')
+      }
     }
     return () => {
-      clearTimeout()
+      clearTimeout(timer)
     }
-  }, [timeLeft, isCounterStarted])
+  }, [timeLeft, hasCounterFinished])
 
   const countDown = () => {
-    !isCounterStarted && setCounterStarted(true)
-    setTimeLeft((timeLeft) => Math.round((timeLeft - 0.1) * 10) / 10)
+    setStatus('pending')
+    setTimeLeft((timeLeft) => Math.round((timeLeft - 0.1) * 100) / 100)
   }
 
   const startCounter = (timeBase: number) => {
     setTimeLeft(timeBase)
-    setCounterStarted(true)
+    setStatus('started')
+    setCounterFinished(false)
   }
 
-  return { isCounterStarted, startCounter, timeLeft }
+  const stopCounter = () => {
+    clearTimeout(timer)
+    setStatus('stopped')
+    setTimeLeft(0)
+    setCounterFinished(true)
+  }
+
+  return { startCounter, status, stopCounter, timeLeft }
 }
