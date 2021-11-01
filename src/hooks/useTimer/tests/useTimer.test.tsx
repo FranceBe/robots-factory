@@ -1,6 +1,6 @@
 import { act, waitFor } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
-import { useTimer } from 'hooks/useTimer/useTimer.hooks'
+import { useTimer } from 'hooks/useTimer/useTimer.hook'
 
 describe('useTimer', () => {
   afterEach(() => {
