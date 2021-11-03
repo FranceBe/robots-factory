@@ -111,6 +111,9 @@ The current activity is represented by a robot icon on the activity button.
 For example, in this image, the robot is mining Bar :
 ![](static/readme-images/mining-bar.png)
 
+When the robot is mining a Foo or mining a Bar, the activity starts again automatically after it ended.
+![](static/readme-images/repeat-activity.gif)
+
 Building a Foobar and buying a robot require resources (1 Foo & 1 Bar for a Foobar, 6 Foo and 3 Foobar for a Robot).
 The user can't click on those buttons until he has enough resources
 
@@ -134,6 +137,16 @@ All resources and robots that the user has are displayed on the right side of th
 When the user obtains 20 robots, a modal pops up to inform them that the game is over.
 
 ![](static/readme-images/end-modal.png)
+
+The activity duration is made with a hook that sets a timer and count down until 0.
+I used [setTimeout](https://developer.mozilla.org/fr/docs/Web/API/setTimeout) to handle time and durations.
+
+Another hook is used to set the current activity, start the timer (with the timer hook), and set the information about
+the current activity. Once the activity duration is over, it sets the information about the results (success, failure) and starts
+again if needed (when mining foo or bar).
+This hook also handle the robot shift, and start the next activity when the robot has stopped moving from an activity to another.
+
+All the resources totals are stocked in a React Context.
 
 ### Possible improvements
 
@@ -179,7 +192,7 @@ This project respect some naming rules for the files :
 
 Each container | component have an `index.ts` file to make imports easier.
 
-The graphic assets (colors, spaces, etc) are referenced in the `styles/variables.ts` file.
+The graphic assets (colors, spaces, ...) are referenced in the `styles/variables.ts` file.
 
 ## All commands
 
