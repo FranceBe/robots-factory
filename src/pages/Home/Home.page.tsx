@@ -2,8 +2,7 @@
 import { Modal } from 'components/Modal'
 import { TotalsGroup } from 'components/TotalsGroup'
 import { RobotManager } from 'containers/RobotManager'
-import { useGlobalContext } from 'hooks/globalContext'
-import { defaultContextValues } from 'hooks/globalContext/globalContext.variables'
+import { useRobotsContext } from 'contexts/robotsContext'
 import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.service'
 import {
   ContentContainer,
@@ -15,7 +14,7 @@ import {
 import React, { useEffect, useState } from 'react'
 
 export const Home: React.FC = () => {
-  const { setContext, ...context } = useGlobalContext()
+  const { resetContext, ...context } = useRobotsContext()
   const { robot } = context
   const [robotLines, setRobotLines] = useState(arrayFromContextRobotLength(context))
   const [isModalOpen, setModalOpen] = useState(false)
@@ -27,7 +26,7 @@ export const Home: React.FC = () => {
   }, [robot])
 
   const resetGame = () => {
-    setContext(defaultContextValues)
+    resetContext()
     setModalOpen(false)
   }
 
@@ -39,7 +38,7 @@ export const Home: React.FC = () => {
       <ContentContainer>
         <RobotsManagementContainer>
           {robotLines.map((lineKey) => (
-            <RobotManager key={`robot-${lineKey + 1}`} robotId={lineKey + 1} />
+            <RobotManager key={`robot-${lineKey + 1}`} robotId={`${lineKey + 1}`} />
           ))}
         </RobotsManagementContainer>
         <TotalsGroupContainer>

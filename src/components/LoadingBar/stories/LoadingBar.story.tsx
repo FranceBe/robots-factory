@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react/types-6-0'
 import { LoadingBar } from 'components/LoadingBar'
-import { LoadingBarProps } from 'components/LoadingBar/types/loadingBar'
+import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
 import React from 'react'
 import useState from 'storybook-addon-state'
 
@@ -31,7 +31,7 @@ export const Animated: React.FC<LoadingBarProps> = () => {
   const [timeLeft, setTimeLeft] = useState('counts', 5)
   const [hasStared, setStarted] = useState('hasStared', false)
   if (hasStared) {
-    timeLeft > 0 && setTimeout(() => setTimeLeft(timeLeft - 1), 1000)
+    timeLeft > 0 && setTimeout(() => setTimeLeft(Math.round((timeLeft - 0.1) * 100) / 100), 100)
   }
   const startCountDown = () => {
     setStarted(true)

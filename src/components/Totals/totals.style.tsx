@@ -1,4 +1,4 @@
-import { TotalsProps } from 'components/Totals/types/totals'
+import { TotalsProps } from 'components/Totals/totals'
 import React from 'react'
 import styled from 'styled-components'
 import { fontSizes, palette, spaces } from 'styles/variables'

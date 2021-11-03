@@ -1,5 +1,5 @@
+import { ButtonProps } from 'components/Button/button'
 import { ButtonContainer, ContentContainer } from 'components/Button/button.style'
-import { ButtonProps } from 'components/Button/types/button'
 import { Icon } from 'components/Icon'
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
@@ -15,6 +15,9 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <div
       data-tip={tooltipText}
+      // data-html and data-for are used
+      // with ReactTooltip to allow html in tooltip and link
+      // the div with the tooltip
       data-html={true}
       data-for={`button-tooltip${uniqueIndex}`}
       data-testid={'button-container'}

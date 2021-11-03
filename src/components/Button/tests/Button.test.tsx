@@ -3,8 +3,8 @@ import 'jest-styled-components'
 
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import Button from 'components/Button'
-import { ButtonProps } from 'components/Button/types/button'
+import { Button } from 'components/Button'
+import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import { palette } from 'styles/variables'
 
@@ -41,7 +41,7 @@ describe('Button component', () => {
       const robotIcon = screen.queryByRole('img', { hidden: true })
       expect(robotIcon).not.toBeInTheDocument()
     })
-    it('should display a robot icon when isActive is true', () => {
+    it('should display a robot icon when button isActive', () => {
       initTest({ isActive: true })
 
       const robotIcon = screen.getByRole('img', { hidden: true })

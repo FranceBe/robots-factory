@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react/types-6-0'
 import { Icon } from 'components/Icon'
-import { TotalsProps } from 'components/Totals/types/totals'
+import { TotalsProps } from 'components/Totals/totals'
 import { TotalsGroup } from 'components/TotalsGroup'
 import React from 'react'
 import styled from 'styled-components'

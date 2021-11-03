@@ -3,7 +3,7 @@ import 'jest-styled-components'
 
 import { render, screen } from '@testing-library/react'
 import { LoadingBar } from 'components/LoadingBar'
-import { LoadingBarProps } from 'components/LoadingBar/types/loadingBar'
+import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
 import React from 'react'
 
 describe('LoadingBar component', () => {

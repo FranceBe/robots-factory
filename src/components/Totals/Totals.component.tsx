@@ -1,5 +1,5 @@
+import { TotalsProps } from 'components/Totals/totals'
 import { TotalsContainer } from 'components/Totals/totals.style'
-import { TotalsProps } from 'components/Totals/types/totals'
 import React from 'react'
 
 export const Totals: React.FC<TotalsProps> = ({ type = 'primary', total, label }) => {

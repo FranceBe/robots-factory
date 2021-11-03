@@ -3,7 +3,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faCheck, faRobot, faRoute, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProps, IconType } from 'components/Icon/types/icon'
+import { IconProps, IconType } from 'components/Icon/icon'
 import React from 'react'
 
 export const FAIconByIconProps: Record<IconType, IconProp> = {

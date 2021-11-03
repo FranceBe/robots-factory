@@ -1,6 +1,6 @@
 import { Button } from 'components/Button'
+import { ModalProps } from 'components/Modal/modal'
 import { ModalContent, modalStyle } from 'components/Modal/modal.style'
-import { ModalProps } from 'components/Modal/types/modal'
 import React from 'react'
 import ReactModal from 'react-modal'
 

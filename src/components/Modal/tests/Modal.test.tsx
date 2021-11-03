@@ -3,7 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { Modal } from 'components/Modal'
-import { ModalProps } from 'components/Modal/types/modal'
+import { ModalProps } from 'components/Modal/modal'
 import React from 'react'
 
 describe('Modal component', () => {
@@ -35,7 +35,7 @@ describe('Modal component', () => {
       expect(screen.getByRole('button')).toBeInTheDocument()
       expect(screen.getByText('Click')).toBeInTheDocument()
     })
-    it('should call onClickMock when button is clicked', () => {
+    it('should call onClickMock when user click on the button', () => {
       initTest()
 
       const button = screen.getByRole('button')

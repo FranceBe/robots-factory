@@ -1,4 +1,4 @@
-import { ButtonProps } from 'components/Button/types/button'
+import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import styled from 'styled-components'
 import { fontSizes, palette, spaces } from 'styles/variables'

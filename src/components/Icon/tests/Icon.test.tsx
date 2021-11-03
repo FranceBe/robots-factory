@@ -5,7 +5,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { render, screen } from '@testing-library/react'
 import { FAIconByIconProps, Icon } from 'components/Icon'
-import { IconProps } from 'components/Icon/types/icon'
+import { IconProps } from 'components/Icon/icon'
 import React from 'react'
 
 describe('Icon component', () => {
@@ -16,11 +16,7 @@ describe('Icon component', () => {
     })
   })
   describe('Given type is "robot"', () => {
-    it('should match snapshot', () => {
-      const { container } = initTest({ type: 'robot' })
-      expect(container.firstChild).toMatchSnapshot()
-    })
-    it('should render the FA robot icon', () => {
+    it('should render the FontAwesome robot icon', () => {
       initTest({ type: 'robot' })
       const robotIcon = screen.getByRole('img', { hidden: true })
       expect(robotIcon).toBeInTheDocument()
@@ -28,11 +24,7 @@ describe('Icon component', () => {
     })
   })
   describe('Given type is "spinner"', () => {
-    it('should match snapshot', () => {
-      const { container } = initTest({ type: 'spinner' })
-      expect(container.firstChild).toMatchSnapshot()
-    })
-    it('should render the FA spinner icon', () => {
+    it('should render the FontAwesome spinner icon', () => {
       initTest({ type: 'spinner' })
       const spinnerIcon = screen.getByRole('img', { hidden: true })
       expect(spinnerIcon).toBeInTheDocument()
@@ -40,11 +32,7 @@ describe('Icon component', () => {
     })
   })
   describe('Given type is "failure"', () => {
-    it('should match snapshot', () => {
-      const { container } = initTest({ type: 'failure' })
-      expect(container.firstChild).toMatchSnapshot()
-    })
-    it('should render the FA times icon', () => {
+    it('should render the FontAwesome times icon', () => {
       initTest({ type: 'failure' })
       const failureIcon = screen.getByRole('img', { hidden: true })
       expect(failureIcon).toBeInTheDocument()
@@ -52,11 +40,7 @@ describe('Icon component', () => {
     })
   })
   describe('Given type is "success"', () => {
-    it('should match snapshot', () => {
-      const { container } = initTest({ type: 'success' })
-      expect(container.firstChild).toMatchSnapshot()
-    })
-    it('should render the FA check icon', () => {
+    it('should render the FontAwesome check icon', () => {
       initTest({ type: 'success' })
       const successIcon = screen.getByRole('img', { hidden: true })
       expect(successIcon).toBeInTheDocument()
@@ -64,11 +48,7 @@ describe('Icon component', () => {
     })
   })
   describe('Given type is "moving"', () => {
-    it('should match snapshot', () => {
-      const { container } = initTest({ type: 'moving' })
-      expect(container.firstChild).toMatchSnapshot()
-    })
-    it('should render the FA check icon', () => {
+    it('should render the FontAwesome check icon', () => {
       initTest({ type: 'moving' })
       const successIcon = screen.getByRole('img', { hidden: true })
       expect(successIcon).toBeInTheDocument()

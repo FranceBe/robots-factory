@@ -1,4 +1,4 @@
-import { StyledContainerProps } from 'containers/RobotManager/types/robotManager'
+import { StyledContainerProps } from 'containers/RobotManager/robotManager'
 import React, { PropsWithChildren } from 'react'
 import styled from 'styled-components'
 import { palette } from 'styles/variables'

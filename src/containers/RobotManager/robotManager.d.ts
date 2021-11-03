@@ -1,11 +1,11 @@
-import { ContextType } from 'hooks/types/globalContext'
-import { IconProps } from 'components/Icon/types/icon'
+import { IconProps } from 'components/Icon/icon'
+import { ResourceType } from 'contexts/robotsContext/robotContext'
 
-export type ActivityType = keyof ContextType
+export type ActivityType = keyof ResourceType
 
 export type InfoType = { iconInfo: IconProps | undefined; textInfo: string }
 
-export type RobotManagerProps = { robotId: number | string }
+export type RobotManagerProps = { robotId: string }
 
 type StringBoolean = 'true' | 'false'
 

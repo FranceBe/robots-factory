@@ -1,12 +1,11 @@
 import '@testing-library/jest-dom/extend-expect'
 
 import { render, screen } from '@testing-library/react'
+import { ButtonProps } from 'components/Button/button'
+import { IconProps } from 'components/Icon/icon'
+import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
 import { RobotCard } from 'components/RobotCard'
 import React from 'react'
-
-import { ButtonProps } from '../../Button/types/button'
-import { IconProps } from '../../Icon/types/icon'
-import { LoadingBarProps } from '../../LoadingBar/types/loadingBar'
 
 describe('RobotCard component', () => {
   // Set up test
@@ -27,7 +26,7 @@ describe('RobotCard component', () => {
   const loadingBar: LoadingBarProps = { timeBase: 1, timeLeft: 0.5 }
   const iconInfo: IconProps = { spin: true, type: 'spinner' }
   const textInfo = 'Le robot est en train de miner du Foo. Cela prend 1s / Foo.'
-  const robotId = 1
+  const robotId = '1'
   const initTest = () =>
     render(
       <RobotCard

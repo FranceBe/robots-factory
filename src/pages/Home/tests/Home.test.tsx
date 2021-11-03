@@ -2,51 +2,54 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { GlobalContext } from 'hooks/globalContext'
-import { defaultContextValues } from 'hooks/globalContext/globalContext.variables'
-import { ContextType } from 'hooks/types/globalContext'
+import { RobotsContext } from 'contexts/robotsContext'
+import { ResourceType } from 'contexts/robotsContext/robotContext'
+import {
+  defaultRobotsResources,
+  initialRobotContext,
+} from 'contexts/robotsContext/robotsContext.variables'
 import { Home } from 'pages/Home'
 import React from 'react'
 
 describe('Home page', () => {
-  let setContext: jest.Mock
+  let resetContext: jest.Mock
 
   beforeEach(() => {
-    setContext = jest.fn()
+    resetContext = jest.fn()
   })
 
-  const initTest = (contextProps: ContextType) =>
+  const initTest = (contextProps: ResourceType) =>
     render(
-      <GlobalContext.Provider value={{ setContext, ...contextProps }}>
+      <RobotsContext.Provider value={{ ...initialRobotContext, resetContext, ...contextProps }}>
         <Home />
-      </GlobalContext.Provider>,
+      </RobotsContext.Provider>,
     )
   it('should display page title', () => {
-    initTest(defaultContextValues)
+    initTest(defaultRobotsResources)
 
     expect(screen.getByText('Robots Factory')).toBeInTheDocument()
   })
   it('should display TotalsGroup and context values', () => {
-    initTest(defaultContextValues)
+    initTest(defaultRobotsResources)
 
     expect(screen.getByTestId('totals-group')).toBeInTheDocument()
-    expect(screen.getAllByText('0')).toHaveLength(3) // foo, bar and foobar are set to 0 in defaultContextValues
+    expect(screen.getAllByText('0')).toHaveLength(3) // foo, bar and foobar are set to 0 in defaultRobotsResources
     expect(screen.getByText('2')).toBeInTheDocument() // robot is set to 2 by default
   })
   it('should display as many RobotManager as there are robots in context', () => {
-    initTest(defaultContextValues)
+    initTest(defaultRobotsResources)
 
-    expect(screen.getAllByTestId('robot-manager')).toHaveLength(defaultContextValues.robot)
+    expect(screen.getAllByTestId('robot-manager')).toHaveLength(defaultRobotsResources.robot)
   })
   it('should not display modal context nor button when context does not have 20 robots', () => {
-    initTest(defaultContextValues)
+    initTest(defaultRobotsResources)
 
     const modalButton = screen.queryByRole('button', { name: 'Fermer' })
     expect(screen.queryByText('Vous avez obtenu 20 robots . Bravo !')).not.toBeInTheDocument()
     expect(modalButton).not.toBeInTheDocument()
   })
   it('should display modal context nor button when context have 20 robots', () => {
-    initTest({ ...defaultContextValues, robot: 20 })
+    initTest({ ...defaultRobotsResources, robot: 20 })
 
     const modalButton = screen.getByRole('button', { name: 'Fermer' })
     expect(screen.getByText(/Vous avez obtenu/)).toBeInTheDocument()
@@ -59,14 +62,14 @@ describe('Home page', () => {
     expect(modalButton).toBeInTheDocument()
   })
   it('should reset context with its default value and close modal when modal button is clicked', () => {
-    initTest({ ...defaultContextValues, robot: 20 })
+    initTest({ ...defaultRobotsResources, robot: 20 })
 
     const modalButton = screen.getByRole('button', { name: 'Fermer' })
 
     userEvent.click(modalButton)
 
-    expect(setContext).toHaveBeenCalledTimes(1)
-    expect(setContext).toHaveBeenCalledWith(defaultContextValues)
+    expect(resetContext).toHaveBeenCalledTimes(1)
+    expect(resetContext).toHaveBeenCalledWith()
     expect(screen.queryByRole('button', { name: 'Fermer' })).not.toBeInTheDocument()
   })
 })

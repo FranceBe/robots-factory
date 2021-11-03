@@ -2,7 +2,7 @@
 
 exports[`TotalsGroup component should match snapshot 1`] = `
 <div
-  class="sc-gtsrHT iNDdFY"
+  class="sc-gtsrHT cIIqls"
   data-testid="totals-group"
 >
   <div

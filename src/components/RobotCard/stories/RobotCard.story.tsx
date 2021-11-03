@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/react/types-6-0'
-import { ButtonProps } from 'components/Button/types/button'
-import { IconProps } from 'components/Icon/types/icon'
-import { LoadingBarProps } from 'components/LoadingBar/types/loadingBar'
+import { ButtonProps } from 'components/Button/button'
+import { IconProps } from 'components/Icon/icon'
+import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
 import { RobotCard } from 'components/RobotCard'
-import { RobotCardProps } from 'components/RobotCard/types/robotCard'
+import { RobotCardProps } from 'components/RobotCard/robotCard'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styles/variables'
@@ -52,7 +52,7 @@ export const Default: React.FC<RobotCardProps> = () => (
       loadingBar={loadingBar}
       iconInfo={iconInfo}
       textInfo={textInfo}
-      robotId={1}
+      robotId={'1'}
     />
   </StoryDiv>
 )

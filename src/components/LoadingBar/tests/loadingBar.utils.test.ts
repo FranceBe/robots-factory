@@ -1,6 +1,6 @@
-import { getFilledBarWidth } from 'components/LoadingBar/loadingBar.service'
+import { getFilledBarWidth } from 'components/LoadingBar/loadingBar.utils'
 
-describe('LoadingBar service', () => {
+describe('LoadingBar utils', () => {
   describe('getFilledBarWidth', () => {
     const cases: number[][] = [
       [2, 98.18],

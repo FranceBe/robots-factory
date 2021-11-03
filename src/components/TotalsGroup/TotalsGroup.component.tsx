@@ -1,5 +1,5 @@
 import { Totals } from 'components/Totals'
-import { TotalsProps } from 'components/Totals/types/totals'
+import { TotalsProps } from 'components/Totals/totals'
 import { CardContainer } from 'components/TotalsGroup/totalsGroup.style'
 import React from 'react'
 

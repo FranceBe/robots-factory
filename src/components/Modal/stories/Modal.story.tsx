@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/react/types-6-0'
 import { Modal } from 'components/Modal'
-import { ModalProps } from 'components/Modal/types/modal'
+import { ModalProps } from 'components/Modal/modal'
 import React from 'react'
 import useState from 'storybook-addon-state'
 

@@ -1,6 +1,7 @@
 import { Button } from 'components/Button'
 import { Icon } from 'components/Icon'
 import { LoadingBar } from 'components/LoadingBar'
+import { RobotCardProps } from 'components/RobotCard/robotCard'
 import {
   ButtonsAndLoadingContainer,
   ButtonsContainer,
@@ -9,7 +10,6 @@ import {
   LoadingAndInfoContainer,
   RobotsContainer,
 } from 'components/RobotCard/robotCard.style'
-import { RobotCardProps } from 'components/RobotCard/types/robotCard'
 import React from 'react'
 
 export const RobotCard: React.FC<RobotCardProps> = ({

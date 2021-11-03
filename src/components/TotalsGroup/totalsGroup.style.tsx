@@ -1,12 +1,12 @@
 import styled from 'styled-components'
+import { spaces } from 'styles/variables'
 
 export const CardContainer = styled.div`
-  //position: fixed;
   width: 90%;
   .totals-component:not(:nth-last-child(2)) {
-    margin-bottom: 8px;
+    margin-bottom: ${spaces.small};
   }
   .totals-component:nth-last-child(2) {
-    margin-bottom: 16px;
+    margin-bottom: ${spaces.regular};
   }
 `

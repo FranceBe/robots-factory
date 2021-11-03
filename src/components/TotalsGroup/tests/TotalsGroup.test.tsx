@@ -2,7 +2,7 @@ import '@testing-library/jest-dom/extend-expect'
 
 import { render, screen } from '@testing-library/react'
 import { Icon } from 'components/Icon'
-import { TotalsProps } from 'components/Totals/types/totals'
+import { TotalsProps } from 'components/Totals/totals'
 import { TotalsGroup } from 'components/TotalsGroup'
 import React from 'react'
 

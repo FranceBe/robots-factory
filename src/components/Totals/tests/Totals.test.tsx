@@ -3,7 +3,7 @@ import 'jest-styled-components'
 
 import { render, screen } from '@testing-library/react'
 import { Totals } from 'components/Totals'
-import { TotalsProps } from 'components/Totals/types/totals'
+import { TotalsProps } from 'components/Totals/totals'
 import React from 'react'
 import { palette } from 'styles/variables'
 

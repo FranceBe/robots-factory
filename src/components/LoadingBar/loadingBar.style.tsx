@@ -33,5 +33,4 @@ export const FilledBar = styled((props: PropsWithChildren<{ filled: number }>) =
   border-bottom-right-radius: ${(props) => (props.filled === 100 ? spaces.x_small : 0)};
   border-top-right-radius: ${(props) => (props.filled === 100 ? spaces.x_small : 0)};
   height: 100%;
-  transition: ${(props) => (props.filled === 0 ? 'none' : 'width 0.2s linear')};
 `

@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/react/types-6-0'
-import Icon from 'components/Icon'
+import { Icon } from 'components/Icon'
 import React from 'react'
 import { palette } from 'styles/variables'
 

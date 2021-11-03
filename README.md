@@ -38,7 +38,7 @@ Le jeu s'arrête quand on a 20 robots.
 ### Before installing
 
 If you are using [avn](https://www.npmjs.com/package/avn), there is a `node-version` file that
-will automatically set your node version to `16.3.0`.
+will automatically set your node version to `16.13.0`.
 If not, make sure you're using a `node version >= 16`.
 
 
@@ -47,7 +47,7 @@ If not, make sure you're using a `node version >= 16`.
 ---
 
 You can use either `yarn` or `npm` to install app dependencies by using
-- `yarn add all`
+- `yarn install`
 
 or
 
@@ -155,6 +155,7 @@ The app is built with 1 principal folders : `src` that contains everything the f
       only context they need to be functional.
     * `containers` contains all the containers needed for the App. In this project, a "container" is a React component that needs context, logic,
       state,... For example, a container can not be used in another project context.
+    * `contexts` contains all the contexts needed for the project.
     * `hooks` contains all the custom hooks used in the project.
     * `pages` contains all pages needed for the App. A page match a route, in this project there is only one route ('/'), so there is only one page (Home).
     * `style` contains the style variable and the global style of the application.
@@ -163,7 +164,6 @@ The app is built with 1 principal folders : `src` that contains everything the f
 Those folders contain sub-folders :
 - `tests` contains the tests made with `Jest` and `React-testing-library`.
 - `stories` contains the storybook stories (only for components).
-- `types` contains all the types used for Typescript.
 
 #### Best practices
 
@@ -173,9 +173,9 @@ This project respect some naming rules for the files :
 - A `page` file is named `[PageName].page.tsx`
 - A `hook` file is named `hookName.hook.tsx`
 - A component|container|page style file is named `[componentName].style.tsx`
-- A component|container|page service file is named `[componentName].service.tsx`
+- A component|container|page utils file is named `[componentName].utils.tsx`
 - A component|container|page story file is named `[componentName].story.tsx` and be placed in a `stories` file
-- A test is named `[componentName].[service?].test.tsx`
+- A test is named `[componentName].[utils?].test.tsx`
 
 Each container | component have an `index.ts` file to make imports easier.
 
