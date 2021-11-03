@@ -1,5 +1,5 @@
 import { Icon } from 'components/Icon/Icon.component'
-import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.service'
+import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.utils'
 import React from 'react'
 
 describe('Home service', () => {

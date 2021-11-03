@@ -56,9 +56,7 @@ describe('Home page', () => {
     expect(screen.getByText('20 robots')).toBeInTheDocument()
     expect(screen.getByText(/. Bravo !/)).toBeInTheDocument()
     expect(screen.getByText('Le jeu est maintenant terminé.')).toBeInTheDocument()
-    expect(
-      screen.getByText('Le jeu a été remis à 0, vous pouvez fermer cette modale.'),
-    ).toBeInTheDocument()
+    expect(screen.getByText('En cliquand sur "Fermer", le jeu sera remis à 0.')).toBeInTheDocument()
     expect(modalButton).toBeInTheDocument()
   })
   it('should reset context with its default value and close modal when modal button is clicked', () => {

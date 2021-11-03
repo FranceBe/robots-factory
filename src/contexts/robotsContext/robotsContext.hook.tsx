@@ -24,7 +24,7 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
   const [barState, setBar] = useState(bar)
   const [foobarState, setFoobar] = useState(foobar)
   const [robotState, setRobot] = useState(robot)
-  const [resultStatus, setResultStatus] = useState<ResultStatus | undefined>(undefined)
+  const [resultStatus, setResultStatus] = useState<ResultStatus>()
 
   const incrementFoo = () => {
     setFoo((fooState) => fooState + 1)
@@ -64,7 +64,7 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
     setBar(defaultRobotsResources.bar)
     setFoobar(defaultRobotsResources.foobar)
     setRobot(defaultRobotsResources.robot)
-    setResultStatus(undefined)
+    setResultStatus(null)
   }
 
   return (

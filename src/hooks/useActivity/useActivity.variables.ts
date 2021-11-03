@@ -88,3 +88,9 @@ export const timeBaseByActivity: Record<string, number> = {
   moving: 5,
   robot: 0,
 }
+
+export const statusTimer = {
+  done: 'done',
+  'not-started': 'not-started',
+  started: 'started',
+}

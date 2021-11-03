@@ -2,6 +2,7 @@ import {
   emptyInfo,
   infoByActivity,
   nameByActivity,
+  statusTimer,
   timeBaseByActivity,
 } from 'hooks/useActivity/useActivity.variables'
 
@@ -24,6 +25,11 @@ describe('useActivity variables', () => {
   describe('timeBaseByActivity', () => {
     it('should match snapshot', () => {
       expect(timeBaseByActivity).toMatchSnapshot()
+    })
+  })
+  describe('statusTimer', () => {
+    it('should match snapshot', () => {
+      expect(statusTimer).toMatchSnapshot()
     })
   })
 })

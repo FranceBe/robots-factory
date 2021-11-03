@@ -4,7 +4,11 @@ import { useRobotsContext } from 'contexts/robotsContext/robotsContext.hook'
 import { ActivityType } from 'hooks/useActivity/useActivity'
 import { useActivity } from 'hooks/useActivity/useActivity.hook'
 import * as service from 'hooks/useActivity/useActivity.utils'
-import { infoByActivity, timeBaseByActivity } from 'hooks/useActivity/useActivity.variables'
+import {
+  emptyInfo,
+  infoByActivity,
+  timeBaseByActivity,
+} from 'hooks/useActivity/useActivity.variables'
 import { useTimer } from 'hooks/useTimer'
 
 jest.mock('contexts/robotsContext/robotsContext.hook')
@@ -18,6 +22,7 @@ describe('useActivity', () => {
   const buyRobot = jest.fn()
   const buildFoobar = jest.fn()
   const startCounter = jest.fn()
+  const stopCounter = jest.fn()
 
   beforeEach(() => {
     jest.useFakeTimers()
@@ -31,6 +36,7 @@ describe('useActivity', () => {
     useTimerMock.mockReturnValue({
       startCounter,
       status: 'pending',
+      stopCounter,
       timeLeft: 0.1,
     })
   })
@@ -231,4 +237,32 @@ describe('useActivity', () => {
       expect(startCounter).toHaveBeenCalledTimes(2)
     },
   )
+  it('should call stopCounter and reset all value to default when resultStatus is null', () => {
+    useRobotsContextMock
+      .mockReturnValue({
+        buildFoobar,
+        buyRobot,
+        incrementBar,
+        incrementFoo,
+        resultStatus: null,
+      })
+      .mockReturnValueOnce({
+        buildFoobar,
+        buyRobot,
+        incrementBar,
+        incrementFoo,
+        resultStatus: 'success',
+      })
+    const { result } = renderHook(useActivity)
+    const { setActivity } = result.current
+
+    act(() => {
+      setActivity('foo')
+    })
+
+    expect(stopCounter).toHaveBeenCalledTimes(1)
+    expect(result.current.currentInfo).toEqual(emptyInfo)
+    expect(result.current.currentActivity).toEqual(undefined)
+    expect(result.current.timeBase).toEqual(0)
+  })
 })

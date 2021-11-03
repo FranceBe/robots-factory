@@ -5,6 +5,7 @@ import {
   emptyInfo,
   infoByActivity,
   nameByActivity,
+  statusTimer,
   timeBaseByActivity,
 } from 'hooks/useActivity/useActivity.variables'
 import { useTimer } from 'hooks/useTimer'
@@ -17,7 +18,7 @@ export const useActivity = (): {
   timeBase: number
   timeLeft: number
 } => {
-  const { timeLeft, startCounter, status } = useTimer()
+  const { timeLeft, startCounter, status, stopCounter } = useTimer()
 
   const { buildFoobar, buyRobot, incrementBar, incrementFoo, resultStatus } = useRobotsContext()
 
@@ -29,24 +30,30 @@ export const useActivity = (): {
 
   useEffect(() => {
     let timer: NodeJS.Timer
-    if (status === 'done') {
+    if (status === statusTimer.done) {
       setActivityResult(currentActivity)
     }
-    if (status === 'done' && currentActivity === nameByActivity.moving) {
+    if (status === statusTimer.done && currentActivity === nameByActivity.moving) {
       timer = setTimeout(() => setActivity(futureActivity), 500)
     }
-    if (status === 'done' && currentActivity === nameByActivity.foo) {
+    if (status === statusTimer.done && currentActivity === nameByActivity.foo) {
       timer = setTimeout(() => setActivity(currentActivity), 500)
     }
-    if (status === 'done' && currentActivity === nameByActivity.bar) {
+    if (status === statusTimer.done && currentActivity === nameByActivity.bar) {
       timer = setTimeout(() => setActivity(currentActivity), 500)
     }
     return () => clearTimeout(timer)
   }, [status])
 
   useEffect(() => {
-    if (status === 'done') {
+    if (status === statusTimer.done) {
       setResultInfo(currentActivity)
+    }
+    if (resultStatus === null) {
+      stopCounter()
+      setTimeBase(0)
+      setCurrentInfo(emptyInfo)
+      setCurrentActivity(undefined)
     }
   }, [resultStatus, status])
 

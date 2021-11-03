@@ -3,7 +3,6 @@ import { Modal } from 'components/Modal'
 import { TotalsGroup } from 'components/TotalsGroup'
 import { RobotManager } from 'containers/RobotManager'
 import { useRobotsContext } from 'contexts/robotsContext'
-import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.service'
 import {
   ContentContainer,
   RobotsManagementContainer,
@@ -11,6 +10,7 @@ import {
   TitleContainer,
   TotalsGroupContainer,
 } from 'pages/Home/home.style'
+import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.utils'
 import React, { useEffect, useState } from 'react'
 
 export const Home: React.FC = () => {
@@ -18,6 +18,7 @@ export const Home: React.FC = () => {
   const { robot } = context
   const [robotLines, setRobotLines] = useState(arrayFromContextRobotLength(context))
   const [isModalOpen, setModalOpen] = useState(false)
+
   useEffect(() => {
     setRobotLines(arrayFromContextRobotLength(context))
     if (robot === 20) {
@@ -53,7 +54,7 @@ export const Home: React.FC = () => {
               Vous avez obtenu <span>20 robots</span>. Bravo !
             </p>
             <p>Le jeu est maintenant terminé.</p>
-            <p>Le jeu a été remis à 0, vous pouvez fermer cette modale.</p>
+            <p>En cliquand sur "Fermer", le jeu sera remis à 0.</p>
           </>
         }
         onButtonClick={resetGame}

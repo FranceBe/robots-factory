@@ -118,6 +118,14 @@ Object {
 }
 `;
 
+exports[`useActivity variables statusTimer should match snapshot 1`] = `
+Object {
+  "done": "done",
+  "not-started": "not-started",
+  "started": "started",
+}
+`;
+
 exports[`useActivity variables timeBaseByActivity should match snapshot 1`] = `
 Object {
   "foo": 1,
