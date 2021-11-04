@@ -6,19 +6,20 @@ import { IconProps } from 'components/Icon/icon'
 import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
 import { RobotCard } from 'components/RobotCard'
 import React from 'react'
+import { ThemeType } from 'utils/common.variables'
 
 describe('RobotCard component', () => {
   // Set up test
   const buttons: ButtonProps[] = [
-    { buttonType: 'primary', children: 'Miner Foo', isActive: true },
-    { buttonType: 'primary', children: 'Miner Bar' },
+    { buttonType: ThemeType.primary, children: 'Miner Foo', isActive: true },
+    { buttonType: ThemeType.primary, children: 'Miner Bar' },
     {
-      buttonType: 'primary',
+      buttonType: ThemeType.primary,
       children: 'Assembler Foobar',
       disabled: true,
     },
     {
-      buttonType: 'secondary',
+      buttonType: ThemeType.secondary,
       children: 'Acheter un robot',
       disabled: true,
     },

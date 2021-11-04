@@ -1,6 +1,7 @@
 import { Icon } from 'components/Icon/Icon.component'
 import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.utils'
 import React from 'react'
+import { ThemeType } from 'utils/common.variables'
 
 describe('Home service', () => {
   describe('getTotalsFromContext', () => {
@@ -14,10 +15,10 @@ describe('Home service', () => {
       const result = getTotalsFromContext(context)
       expect(result.toString()).toBe(
         [
-          { label: 'Foo', total: 1, type: 'primary' },
-          { label: 'Bar', total: 2, type: 'primary' },
-          { label: 'Foobar', total: 3, type: 'primary' },
-          { label: <Icon type={'robot'} />, total: 5, type: 'secondary' },
+          { label: 'Foo', total: 1, type: ThemeType.primary },
+          { label: 'Bar', total: 2, type: ThemeType.primary },
+          { label: 'Foobar', total: 3, type: ThemeType.primary },
+          { label: <Icon type={'robot'} />, total: 5, type: ThemeType.secondary },
         ].toString(),
       )
     })

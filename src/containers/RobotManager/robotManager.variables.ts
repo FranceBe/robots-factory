@@ -1,3 +1,5 @@
+import { requirement } from 'utils/common.variables'
+
 // Create an object matching an activity and its associated tooltip texts
 export const tooltipTexts: Record<string, string> = {
   foobar:
@@ -8,11 +10,11 @@ export const tooltipTexts: Record<string, string> = {
 
 // Create objects matching an activity and its associated resource requirements
 export const requirementsForAFoobar: Record<string, number> = {
-  bar: 1,
-  foo: 1,
+  bar: requirement.foobar.bar,
+  foo: requirement.foobar.foo,
 }
 
 export const requirementsForARobot: Record<string, number> = {
-  foo: 6,
-  foobar: 3,
+  foo: requirement.robot.foo,
+  foobar: requirement.robot.foobar,
 }

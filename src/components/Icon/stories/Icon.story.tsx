@@ -54,28 +54,7 @@ export const IconsWithCustomSizes: React.FC = () => (
   </>
 )
 
-export const IconsWithAnimation: React.FC = () => (
-  <>
-    <div>
-      <Icon type={'robot'} spin />
-    </div>
-    <br />
-    <div>
-      <Icon type={'spinner'} spin />
-    </div>
-    <br />
-    <div>
-      <Icon type={'success'} spin />
-    </div>
-    <br />
-    <div>
-      <Icon type={'failure'} spin />
-    </div>
-    <div>
-      <Icon type={'moving'} spin />
-    </div>
-  </>
-)
+export const IconsWithAnimation: React.FC = () => <Icon type={'spinner'} spin />
 
 export const IconsWithCustomColors: React.FC = () => (
   <>

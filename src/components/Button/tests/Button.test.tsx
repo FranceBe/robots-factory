@@ -7,6 +7,7 @@ import { Button } from 'components/Button'
 import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import { palette } from 'styles/variables'
+import { ThemeType } from 'utils/common.variables'
 
 describe('Button component', () => {
   const initTest = (props?: ButtonProps) => render(<Button {...props}>Button text</Button>)
@@ -61,7 +62,7 @@ describe('Button component', () => {
 
   describe('Given buttonType is "primary"', () => {
     it('should have primary button style', () => {
-      initTest({ buttonType: 'primary' })
+      initTest({ buttonType: ThemeType.primary })
       const button = screen.getByRole('button', { name: 'Button text' })
 
       expect(button).toHaveStyleRule('background-color', `${palette.pink_primary}`)
@@ -80,7 +81,7 @@ describe('Button component', () => {
 
   describe('Given buttonType is "secondary"', () => {
     it('should have secondary button style', () => {
-      initTest({ buttonType: 'secondary' })
+      initTest({ buttonType: ThemeType.secondary })
       const button = screen.getByRole('button', { name: 'Button text' })
 
       expect(button).toHaveStyleRule('background-color', `${palette.blue_primary}`)

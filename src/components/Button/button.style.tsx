@@ -2,12 +2,13 @@ import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import styled from 'styled-components'
 import { fontSizes, palette, spaces } from 'styles/variables'
+import { ThemeType } from 'utils/common.variables'
 
 export const ButtonContainer = styled((props) => <button {...props} />)<ButtonProps>`
   height: ${spaces.xx_large};
   border: none;
   background-color: ${(props) =>
-    props.buttontype === 'primary' ? palette.pink_primary : palette.blue_primary};
+    props.buttontype === ThemeType.primary ? palette.pink_primary : palette.blue_primary};
   padding: ${spaces.small};
   color: ${palette.white};
   font-size: ${fontSizes.regular};
@@ -16,13 +17,13 @@ export const ButtonContainer = styled((props) => <button {...props} />)<ButtonPr
   min-width: 184px;
   :hover {
     background-color: ${(props) =>
-      props.buttontype === 'primary' ? palette.pink_tertiary : palette.blue_tertiary};
+      props.buttontype === ThemeType.primary ? palette.pink_tertiary : palette.blue_tertiary};
   }
   :disabled,
   :disabled:hover {
     color: ${palette.grey_quaternary};
     background-color: ${(props) =>
-      props.buttontype === 'primary' ? palette.pink_secondary : palette.blue_secondary};
+      props.buttontype === ThemeType.primary ? palette.pink_secondary : palette.blue_secondary};
     cursor: not-allowed;
   }
   svg {

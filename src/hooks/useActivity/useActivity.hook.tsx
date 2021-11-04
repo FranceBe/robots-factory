@@ -33,23 +33,32 @@ export const useActivity = (): {
     if (status === statusTimer.done) {
       setActivityResult(currentActivity)
     }
+
     if (status === statusTimer.done && currentActivity === nameByActivity.moving) {
+      // Set future activity when robot has moved
       timer = setTimeout(() => setActivity(futureActivity), 500)
     }
+
     if (status === statusTimer.done && currentActivity === nameByActivity.foo) {
+      // Set Foo activity again, repeatedly 500ms after the end of previous Foo activity
       timer = setTimeout(() => setActivity(currentActivity), 500)
     }
+
     if (status === statusTimer.done && currentActivity === nameByActivity.bar) {
+      // Set Bar activity again, repeatedly 500ms after the end of previous Bar activity
       timer = setTimeout(() => setActivity(currentActivity), 500)
     }
+
     return () => clearTimeout(timer)
   }, [status])
 
   useEffect(() => {
     if (status === statusTimer.done) {
+      // Update the icon and text info after an activity is done
       setResultInfo(currentActivity)
     }
     if (resultStatus === null) {
+      // Clean states and stop counter when resultStatus is null
       stopCounter()
       setTimeBase(0)
       setCurrentInfo(emptyInfo)
@@ -62,12 +71,15 @@ export const useActivity = (): {
       let timeBaseForActivity: number = timeBaseByActivity[activity]
       setCurrentActivity(activity)
       setCurrentInfo(infoByActivity[activity].current)
+
       if (activity === nameByActivity.bar) {
         timeBaseForActivity = barTimeBase
       }
+
       setTimeBase(timeBaseForActivity)
       startCounter(timeBaseForActivity)
     }
+
     if (activity === nameByActivity.moving && futureActivity) {
       setFutureActivity(futureActivity)
     }
@@ -78,13 +90,16 @@ export const useActivity = (): {
       if (activity === nameByActivity.foo) {
         incrementFoo()
       }
+
       if (activity === nameByActivity.bar) {
         setBarTimeBase(getBarTime())
         incrementBar()
       }
+
       if (activity === nameByActivity.foobar) {
         buildFoobar()
       }
+
       if (activity === nameByActivity.robot) {
         buyRobot()
       }

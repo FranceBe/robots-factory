@@ -4,6 +4,7 @@ import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import styled from 'styled-components'
 import { spaces } from 'styles/variables'
+import { ThemeType } from 'utils/common.variables'
 
 const StoryContainer = styled.div`
   flex-direction: column;
@@ -54,33 +55,36 @@ export const Primary: React.FC<ButtonProps> = () => (
 export const Secondary: React.FC<ButtonProps> = () => (
   <StoryContainer>
     <StoryLine>
-      <Button buttonType={'secondary'}>Button enabled</Button>
-      <Button buttonType={'secondary'} disabled>
+      <Button buttonType={ThemeType.secondary}>Button enabled</Button>
+      <Button buttonType={ThemeType.secondary} disabled>
         Button disabled
       </Button>
     </StoryLine>
     <StoryLine>
-      <Button buttonType={'secondary'} isActive>
+      <Button buttonType={ThemeType.secondary} isActive>
         Enabled Active
       </Button>
-      <Button buttonType={'secondary'} disabled isActive>
+      <Button buttonType={ThemeType.secondary} disabled isActive>
         Disabled Active
       </Button>
     </StoryLine>
     <StoryLine>
-      <Button buttonType={'secondary'} tooltipText={'Tooltip text'}>
+      <Button buttonType={ThemeType.secondary} tooltipText={'Tooltip text'}>
         Enabled with Tooltip
       </Button>
-      <Button buttonType={'secondary'} disabled tooltipText={'Tooltip text'}>
+      <Button buttonType={ThemeType.secondary} disabled tooltipText={'Tooltip text'}>
         Disabled with Tooltip
       </Button>
     </StoryLine>
     <StoryLine>
-      <Button buttonType={'secondary'} tooltipText={'<ul> <li>HTML</li><li>Tooltip</li></ul>'}>
+      <Button
+        buttonType={ThemeType.secondary}
+        tooltipText={'<ul> <li>HTML</li><li>Tooltip</li></ul>'}
+      >
         Enabled with HTML Tooltip
       </Button>
       <Button
-        buttonType={'secondary'}
+        buttonType={ThemeType.secondary}
         disabled
         tooltipText={'<ul> <li>HTML</li><li>Tooltip</li></ul>'}
       >

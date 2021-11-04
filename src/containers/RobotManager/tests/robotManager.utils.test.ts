@@ -3,6 +3,7 @@ import { tooltipTexts } from 'containers/RobotManager/robotManager.variables'
 import { defaultRobotsResources } from 'contexts/robotsContext/robotsContext.variables'
 import { nameByActivity } from 'hooks/useActivity/useActivity.variables'
 import React from 'react'
+import { ThemeType } from 'utils/common.variables'
 
 describe('RobotManager utils', () => {
   afterAll(() => {
@@ -53,19 +54,19 @@ describe('RobotManager utils', () => {
       expect(result.toString()).toEqual(
         [
           {
-            buttonType: 'primary',
+            buttonType: ThemeType.primary,
             children: 'Miner Foo',
             isActive: true,
             onClick: () => action(nameByActivity.foo),
           },
           {
-            buttonType: 'primary',
+            buttonType: ThemeType.primary,
             children: 'Miner Bar',
             isActive: false,
             onClick: () => action(nameByActivity.bar),
           },
           {
-            buttonType: 'primary',
+            buttonType: ThemeType.primary,
             children: 'Assembler Foobar',
             disabled: true,
             isActive: false,
@@ -73,7 +74,7 @@ describe('RobotManager utils', () => {
             tooltipText: tooltipTexts.foobar,
           },
           {
-            buttonType: 'secondary',
+            buttonType: ThemeType.secondary,
             children: 'Acheter un robot',
             disabled: true,
             isActive: false,

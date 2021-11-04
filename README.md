@@ -155,6 +155,7 @@ All the resources totals are stocked in a React Context.
 - For timing reason I decided to make more efforts on the technical side than on the design.
 - I chose to keep record of the resources using React `useContext` hook, but it would be better to
   use cache so the game will not be reset on browser refresh.
+- Allow "Build Foobar" activity to restart automatically, like "Mine Foo" & "Mine Bar" to make the game smoother.
 
 ### Architecture and best practices
 

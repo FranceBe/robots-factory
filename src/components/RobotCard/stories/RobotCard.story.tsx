@@ -7,6 +7,7 @@ import { RobotCardProps } from 'components/RobotCard/robotCard'
 import React from 'react'
 import styled from 'styled-components'
 import { palette } from 'styles/variables'
+import { ThemeType } from 'utils/common.variables'
 
 const StoryDiv = styled.div`
   .foobar-foo,
@@ -24,17 +25,17 @@ export default {
 } as Meta
 
 const buttons: ButtonProps[] = [
-  { buttonType: 'primary', children: 'Miner Foo', isActive: true },
-  { buttonType: 'primary', children: 'Miner Bar' },
+  { buttonType: ThemeType.primary, children: 'Miner Foo', isActive: true },
+  { buttonType: ThemeType.primary, children: 'Miner Bar' },
   {
-    buttonType: 'primary',
+    buttonType: ThemeType.primary,
     children: 'Assembler Foobar',
     disabled: true,
     tooltipText:
       '<p>Requiert <span class="foobar-foo">1 Foo</span> et <span class="foobar-bar">1 Bar</span>.</p>',
   },
   {
-    buttonType: 'secondary',
+    buttonType: ThemeType.secondary,
     children: 'Acheter un robot',
     disabled: true,
     tooltipText:

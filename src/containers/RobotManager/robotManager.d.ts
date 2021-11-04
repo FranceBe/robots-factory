@@ -1,6 +1,6 @@
 import { IconProps } from 'components/Icon/icon'
 import { ResourceType } from 'contexts/robotsContext/robotContext'
-
+import { StringBoolean } from 'utils/common.variables'
 export type ActivityType = keyof ResourceType
 
 export type InfoType = { iconInfo: IconProps | undefined; textInfo: string }

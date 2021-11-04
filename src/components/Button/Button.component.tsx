@@ -4,9 +4,10 @@ import { Icon } from 'components/Icon'
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { palette } from 'styles/variables'
+import { ThemeType } from 'utils/common.variables'
 
 export const Button: React.FC<ButtonProps> = ({
-  buttonType = 'primary',
+  buttonType = ThemeType.primary,
   isActive = false,
   tooltipText,
   uniqueIndex = '1',
@@ -22,7 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
       data-for={`button-tooltip${uniqueIndex}`}
       data-testid={'button-container'}
     >
-      <ButtonContainer buttontype={buttonType} {...rest}>
+      <ButtonContainer buttontype={ThemeType[buttonType]} {...rest}>
         <ContentContainer>{rest.children}</ContentContainer>
         {isActive && <Icon type={'robot'} />}
         {tooltipText && (

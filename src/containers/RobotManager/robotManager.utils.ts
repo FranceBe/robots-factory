@@ -7,6 +7,7 @@ import {
 import { ResourceType } from 'contexts/robotsContext/robotContext'
 import { ActivityType } from 'hooks/useActivity/useActivity'
 import { nameByActivity } from 'hooks/useActivity/useActivity.variables'
+import { ThemeType } from 'utils/common.variables'
 
 // Function that returns a boolean
 // Depending on if the current context has enough resource
@@ -35,19 +36,19 @@ export const getButtons = (
 ): ButtonProps[] => {
   return [
     {
-      buttonType: 'primary',
+      buttonType: ThemeType.primary,
       children: 'Miner Foo',
       isActive: currentActivity === nameByActivity.foo,
       onClick: () => action(nameByActivity.foo),
     },
     {
-      buttonType: 'primary',
+      buttonType: ThemeType.primary,
       children: 'Miner Bar',
       isActive: currentActivity === nameByActivity.bar,
       onClick: () => action(nameByActivity.bar),
     },
     {
-      buttonType: 'primary',
+      buttonType: ThemeType.primary,
       children: 'Assembler Foobar',
       disabled:
         context.foo < requirementsForAFoobar.foo || context.bar < requirementsForAFoobar.bar,
@@ -56,7 +57,7 @@ export const getButtons = (
       tooltipText: tooltipTexts.foobar,
     },
     {
-      buttonType: 'secondary',
+      buttonType: ThemeType.secondary,
       children: 'Acheter un robot',
       disabled:
         context.foo < requirementsForARobot.foo || context.foobar < requirementsForARobot.foobar,

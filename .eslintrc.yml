@@ -8,7 +8,6 @@ parserOptions:
   tsconfigRootDir: .
   project:
     - ./tsconfig.json
-    - ./tsconfig.server.json
 plugins:
   - '@typescript-eslint'
   - prettier

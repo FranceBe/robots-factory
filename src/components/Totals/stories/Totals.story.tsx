@@ -3,6 +3,7 @@ import { Icon } from 'components/Icon'
 import { Totals } from 'components/Totals'
 import { TotalsProps } from 'components/Totals/totals'
 import React from 'react'
+import { ThemeType } from 'utils/common.variables'
 
 export default {
   component: Totals,
@@ -18,8 +19,8 @@ export const Primary: React.FC<TotalsProps> = () => (
 )
 export const Secondary: React.FC<TotalsProps> = () => (
   <>
-    <Totals type={'secondary'} label={'Foo'} total={4} />
+    <Totals type={ThemeType.secondary} label={'Foo'} total={4} />
     <br />
-    <Totals type={'secondary'} label={<Icon type={'robot'} />} total={4} />
+    <Totals type={ThemeType.secondary} label={<Icon type={'robot'} />} total={4} />
   </>
 )

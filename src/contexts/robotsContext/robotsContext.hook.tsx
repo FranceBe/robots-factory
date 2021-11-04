@@ -7,6 +7,7 @@ import {
 } from 'contexts/robotsContext/robotsContext.variables'
 import { ContextType, createContext, ReactNode, useContext } from 'react'
 import React, { useState } from 'react'
+import { requirement } from 'utils/common.variables'
 
 export const RobotsContext = createContext<RobotsResourceType>(initialRobotContext)
 
@@ -37,7 +38,7 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
   }
 
   const buyRobot = () => {
-    if (fooState >= 6 && foobarState >= 3) {
+    if (fooState >= requirement.robot.foo && foobarState >= requirement.robot.foobar) {
       setFoo((fooState) => fooState - 6)
       setFoobar((foobarState) => foobarState - 3)
       setRobot((robotState) => robotState + 1)
@@ -46,7 +47,7 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
   }
 
   const buildFoobar = () => {
-    if (fooState >= 1 && barState >= 1) {
+    if (fooState >= requirement.foobar.foo && barState >= requirement.foobar.bar) {
       const hasSucceeded = hasFoobarSucceeded()
       setResultStatus(hasSucceeded)
       if (hasSucceeded === resultByStatus.success) {
