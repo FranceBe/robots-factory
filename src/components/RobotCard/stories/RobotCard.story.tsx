@@ -46,7 +46,15 @@ const loadingBar: LoadingBarProps = { timeBase: 1, timeLeft: 0.5 }
 const iconInfo: IconProps = { spin: true, type: 'spinner' }
 const textInfo = 'Le robot est en train de miner du Foo. Cela prend 1s / Foo.'
 
+const textInfoEmpty = ''
+
 export const Default: React.FC<RobotCardProps> = () => (
+  <StoryDiv>
+    <RobotCard buttons={buttons} loadingBar={loadingBar} textInfo={textInfoEmpty} robotId={'1'} />
+  </StoryDiv>
+)
+
+export const DoingAnActivity: React.FC<RobotCardProps> = () => (
   <StoryDiv>
     <RobotCard
       buttons={buttons}

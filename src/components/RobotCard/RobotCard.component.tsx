@@ -35,7 +35,7 @@ export const RobotCard: React.FC<RobotCardProps> = ({
         <LoadingAndInfoContainer>
           <LoadingBar {...loadingBar} />
           <InfoContainer>
-            {iconInfo ? <Icon {...iconInfo} /> : <Icon type={'spinner'} color={'transparent'} />}
+            {iconInfo && <Icon {...iconInfo} />}
             <span>{textInfo}</span>
           </InfoContainer>
         </LoadingAndInfoContainer>

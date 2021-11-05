@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { palette, spaces } from 'styles/variables'
+import { fontSizes, palette, spaces } from 'styles/variables'
 
 export const CardBackground = styled.div`
   background-color: ${palette.white};
@@ -33,6 +33,7 @@ export const LoadingAndInfoContainer = styled.div`
   margin: ${spaces.small};
 `
 export const InfoContainer = styled.div`
+  min-height: ${fontSizes.medium};
   margin-top: ${spaces.small};
   display: flex;
   align-items: center;
