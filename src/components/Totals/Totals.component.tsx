@@ -1,3 +1,4 @@
+// Totals component represent the totals of a provided item
 import { TotalsProps } from 'components/Totals/totals'
 import { TotalsContainer } from 'components/Totals/totals.style'
 import React from 'react'

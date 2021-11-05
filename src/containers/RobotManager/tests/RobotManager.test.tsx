@@ -136,13 +136,13 @@ describe('RobotManager Container', () => {
     ]
 
     it.each(casesStartActivity)(
-      'should call setActivity with corresponding activity when %s button is clicked',
+      'should call startActivity with corresponding activity when %s button is clicked',
       (buttonName: string, activityName: ActivityType) => {
-        const setActivity = jest.fn()
+        const startActivity = jest.fn()
         jest.spyOn(useActivityHook, 'useActivity').mockReturnValue({
           currentActivity: activityName,
           currentInfo: { iconInfo: undefined, textInfo: '' },
-          setActivity,
+          startActivity,
           timeBase: 1,
           timeLeft: 0.1,
         })
@@ -153,17 +153,17 @@ describe('RobotManager Container', () => {
 
         userEvent.click(button)
 
-        expect(setActivity).toHaveBeenCalledTimes(1)
-        expect(setActivity).toHaveBeenCalledWith(activityName, undefined)
+        expect(startActivity).toHaveBeenCalledTimes(1)
+        expect(startActivity).toHaveBeenCalledWith(activityName, undefined)
       },
     )
   })
-  it('should call setActivity with "moving" and a future activity when activity changes', () => {
-    const setActivity = jest.fn()
+  it('should call startActivity with "moving" and a future activity when activity changes', () => {
+    const startActivity = jest.fn()
     jest.spyOn(useActivityHook, 'useActivity').mockReturnValue({
       currentActivity: 'foo', // Robot is currently mining Foo
       currentInfo: { iconInfo: undefined, textInfo: '' },
-      setActivity,
+      startActivity,
       timeBase: 1,
       timeLeft: 0.1,
     })
@@ -173,7 +173,7 @@ describe('RobotManager Container', () => {
 
     userEvent.click(button)
 
-    expect(setActivity).toHaveBeenCalledTimes(1)
-    expect(setActivity).toHaveBeenCalledWith('moving', 'bar')
+    expect(startActivity).toHaveBeenCalledTimes(1)
+    expect(startActivity).toHaveBeenCalledWith('moving', 'bar')
   })
 })

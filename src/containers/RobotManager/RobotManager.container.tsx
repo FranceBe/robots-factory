@@ -1,3 +1,5 @@
+// Robot manager container handle the behaviour when a robot's activity
+// is chosen by player
 import { RobotCard } from 'components/RobotCard'
 import { RobotManagerProps } from 'containers/RobotManager/robotManager'
 import { RobotManagerContainer } from 'containers/RobotManager/robotManager.style'
@@ -13,15 +15,20 @@ export const RobotManager: React.FC<RobotManagerProps> = ({ robotId }) => {
   const { ...context } = useRobotsContext()
 
   // Custom hook to set an activity & its results
-  const { currentActivity, currentInfo, setActivity, timeBase, timeLeft } = useActivity()
+  const { currentActivity, currentInfo, startActivity, timeBase, timeLeft } = useActivity()
 
-  const startActivity = (activity: ActivityType) => {
+  // Function called on button click
+  const doActivity = (activity: ActivityType) => {
     const isMoving = currentActivity && activity !== currentActivity
 
+    // If the robot was already doing an activity  when the function is called
+    // with a different activity, then the robot is considered as "moving"
     const currentActivityToSet: ActivityType = isMoving ? nameByActivity.moving : activity
+    // If the robot is moving, then the futureActivity is the one provided to the function
     const futureActivity: ActivityType = isMoving ? activity : undefined
 
-    setActivity(currentActivityToSet, futureActivity)
+    // Call startActivity from useActivity hook with the current activity and the future activity
+    startActivity(currentActivityToSet, futureActivity)
   }
 
   return (
@@ -37,7 +44,7 @@ export const RobotManager: React.FC<RobotManagerProps> = ({ robotId }) => {
       )}`}
     >
       <RobotCard
-        buttons={getButtons(currentActivity, startActivity, context)}
+        buttons={getButtons(currentActivity, doActivity, context)}
         robotId={robotId}
         loadingBar={{
           timeBase: timeBase,

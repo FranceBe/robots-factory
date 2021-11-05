@@ -1,3 +1,5 @@
+// Use activity hook handles the behaviour for each activity, it starts the activity & update context
+// When activity is done
 import { useRobotsContext } from 'contexts/robotsContext'
 import { ActivityType, InfoType } from 'hooks/useActivity/useActivity'
 import { getBarTime } from 'hooks/useActivity/useActivity.utils'
@@ -14,12 +16,14 @@ import { useEffect, useState } from 'react'
 export const useActivity = (): {
   currentActivity: ActivityType
   currentInfo: InfoType
-  setActivity: (activity: ActivityType, futureActivity?: ActivityType) => void
+  startActivity: (activity: ActivityType, futureActivity?: ActivityType) => void
   timeBase: number
   timeLeft: number
 } => {
+  // Use useTimer hook
   const { timeLeft, startCounter, status, stopCounter } = useTimer()
 
+  // Use useRobotContext hook
   const { buildFoobar, buyRobot, incrementBar, incrementFoo, resultStatus } = useRobotsContext()
 
   const [currentActivity, setCurrentActivity] = useState<ActivityType>()
@@ -31,22 +35,23 @@ export const useActivity = (): {
   useEffect(() => {
     let timer: NodeJS.Timer
     if (status === statusTimer.done) {
-      setActivityResult(currentActivity)
+      // When timer is done, set activity results
+      onActivityEnd(currentActivity)
     }
 
     if (status === statusTimer.done && currentActivity === nameByActivity.moving) {
       // Set future activity when robot has moved
-      timer = setTimeout(() => setActivity(futureActivity), 500)
+      timer = setTimeout(() => startActivity(futureActivity), 500)
     }
 
     if (status === statusTimer.done && currentActivity === nameByActivity.foo) {
       // Set Foo activity again, repeatedly 500ms after the end of previous Foo activity
-      timer = setTimeout(() => setActivity(currentActivity), 500)
+      timer = setTimeout(() => startActivity(currentActivity), 500)
     }
 
     if (status === statusTimer.done && currentActivity === nameByActivity.bar) {
       // Set Bar activity again, repeatedly 500ms after the end of previous Bar activity
-      timer = setTimeout(() => setActivity(currentActivity), 500)
+      timer = setTimeout(() => startActivity(currentActivity), 500)
     }
 
     return () => clearTimeout(timer)
@@ -57,7 +62,7 @@ export const useActivity = (): {
       // Update the icon and text info after an activity is done
       setResultInfo(currentActivity)
     }
-    if (resultStatus === null) {
+    if (resultStatus === 'reset') {
       // Clean states and stop counter when resultStatus is null
       stopCounter()
       setTimeBase(0)
@@ -66,26 +71,34 @@ export const useActivity = (): {
     }
   }, [resultStatus, status])
 
-  const setActivity = (activity: ActivityType, futureActivity?: ActivityType): void => {
+  const startActivity = (activity: ActivityType, futureActivity?: ActivityType): void => {
     if (activity) {
+      // By default, timeBase is provided by the object timeBaseByActivity
       let timeBaseForActivity: number = timeBaseByActivity[activity]
+
       setCurrentActivity(activity)
       setCurrentInfo(infoByActivity[activity].current)
 
       if (activity === nameByActivity.bar) {
+        // If activity is "bar", timeBase is calculated with getBarTime() and stored in
+        // barTimeBase state
         timeBaseForActivity = barTimeBase
       }
-
+      // Update state timeBase
       setTimeBase(timeBaseForActivity)
+      // Start counter
       startCounter(timeBaseForActivity)
     }
 
     if (activity === nameByActivity.moving && futureActivity) {
+      // If robot is moving and a future activity is provided,
+      // store the future activity in state
       setFutureActivity(futureActivity)
     }
   }
 
-  const setActivityResult = (activity: ActivityType): void => {
+  const onActivityEnd = (activity: ActivityType): void => {
+    // Update context depending on the provided activity
     if (activity) {
       if (activity === nameByActivity.foo) {
         incrementFoo()
@@ -107,6 +120,7 @@ export const useActivity = (): {
   }
 
   const setResultInfo = (activity: ActivityType) => {
+    // Set info icon & text to display after activity ended
     if (resultStatus && activity) {
       setCurrentInfo(infoByActivity[activity][resultStatus])
     }
@@ -114,7 +128,7 @@ export const useActivity = (): {
   return {
     currentActivity,
     currentInfo,
-    setActivity,
+    startActivity,
     timeBase,
     timeLeft,
   }

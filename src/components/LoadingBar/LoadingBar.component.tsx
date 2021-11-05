@@ -1,3 +1,6 @@
+// Loading bar component
+// This component needs a timeLeft and a timeBase props to calculate the width
+// of the FilledBar styled-component
 import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
 import {
   FilledBar,

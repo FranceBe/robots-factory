@@ -3,6 +3,11 @@ export enum ThemeType {
   secondary = 'secondary',
 }
 
+export enum Status {
+  success = 'success',
+  failure = 'failure',
+  undone = 'undone',
+}
 export const requirement = {
   foobar: {
     bar: 1,

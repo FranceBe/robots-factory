@@ -1,3 +1,4 @@
+// Totals group component is a list of all the totals needed for the games
 import { Totals } from 'components/Totals'
 import { TotalsProps } from 'components/Totals/totals'
 import { CardContainer } from 'components/TotalsGroup/totalsGroup.style'

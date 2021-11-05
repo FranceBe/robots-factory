@@ -27,45 +27,59 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
   const [robotState, setRobot] = useState(robot)
   const [resultStatus, setResultStatus] = useState<ResultStatus>()
 
+  // Function that adds a Foo to global context
   const incrementFoo = () => {
     setFoo((fooState) => fooState + 1)
+    // Result is always success
     setResultStatus(resultByStatus.success)
   }
 
+  // Function that add a Bar to global context
   const incrementBar = () => {
     setBar((barState) => barState + 1)
+    // Result is always success
     setResultStatus(resultByStatus.success)
   }
 
+  // Function that adds a Robot to global context if there is enough Foo and Foobar
+  // Do nothing if there is not enough resources
   const buyRobot = () => {
     if (fooState >= requirement.robot.foo && foobarState >= requirement.robot.foobar) {
       setFoo((fooState) => fooState - 6)
       setFoobar((foobarState) => foobarState - 3)
       setRobot((robotState) => robotState + 1)
+      // Result is always success
       setResultStatus(resultByStatus.success)
     }
   }
 
+  // Function that tries to add a Foobar to global context
+  // It has 60% chances to succeed and 40% chances to fail
+  // Do nothing if there is not enough resources
   const buildFoobar = () => {
     if (fooState >= requirement.foobar.foo && barState >= requirement.foobar.bar) {
       const hasSucceeded = hasFoobarSucceeded()
+      // Set result depending on the value returned by hasFoobarSucceeded utils
       setResultStatus(hasSucceeded)
+
       if (hasSucceeded === resultByStatus.success) {
         setFoo((fooState) => fooState - 1)
         setBar((bar) => bar - 1)
         setFoobar((foobarState) => foobarState + 1)
       } else {
+        // If it fails, a Foo is lost
         setFoo((fooState) => fooState - 1)
       }
     }
   }
 
   const resetContext = () => {
+    // Reset all global context value to default
     setFoo(defaultRobotsResources.foo)
     setBar(defaultRobotsResources.bar)
     setFoobar(defaultRobotsResources.foobar)
     setRobot(defaultRobotsResources.robot)
-    setResultStatus(null)
+    setResultStatus('reset')
   }
 
   return (

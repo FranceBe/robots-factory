@@ -1,3 +1,5 @@
+// Robot card component
+// This component represent a robot's action
 import { Button } from 'components/Button'
 import { Icon } from 'components/Icon'
 import { LoadingBar } from 'components/LoadingBar'

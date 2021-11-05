@@ -5,7 +5,7 @@ type ResourceType = {
   robot: number
 }
 
-export type ResultStatus = 'success' | 'failure' | undefined | null
+export type ResultStatus = 'success' | 'failure' | 'reset' | undefined
 
 export type RobotsResourceType = ResourceType & {
   buildFoobar: () => void

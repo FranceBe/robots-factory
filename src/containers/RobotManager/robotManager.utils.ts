@@ -27,8 +27,7 @@ export const hasEnoughResource = (
 }
 
 // Create button list to display in RobotCard
-// With correct info depending on states and context
-// In RobotManager container
+// Depending on states and context in RobotManager container
 export const getButtons = (
   currentActivity: ActivityType,
   action: (activity: ActivityType) => void,
@@ -50,6 +49,7 @@ export const getButtons = (
     {
       buttonType: ThemeType.primary,
       children: 'Assembler Foobar',
+      // The "Build Foobar" button is disabled when there is not enough Foo or Bar in context
       disabled:
         context.foo < requirementsForAFoobar.foo || context.bar < requirementsForAFoobar.bar,
       isActive: currentActivity === nameByActivity.foobar,
@@ -59,6 +59,7 @@ export const getButtons = (
     {
       buttonType: ThemeType.secondary,
       children: 'Acheter un robot',
+      // The "Buy a robot" button is disabled when there is not enough Foo or Foobar in context
       disabled:
         context.foo < requirementsForARobot.foo || context.foobar < requirementsForARobot.foobar,
       isActive: currentActivity === nameByActivity.robot,

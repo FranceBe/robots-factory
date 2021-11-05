@@ -1,3 +1,4 @@
+// Button component
 import { ButtonProps } from 'components/Button/button'
 import { ButtonContainer, ContentContainer } from 'components/Button/button.style'
 import { Icon } from 'components/Icon'

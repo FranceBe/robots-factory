@@ -50,12 +50,12 @@ describe('useActivity', () => {
     jest.useRealTimers()
   })
 
-  it('should return an undefined current activity when setActivity is called with undefined params', () => {
+  it('should return an undefined current activity when startActivity is called with undefined params', () => {
     const { result } = renderHook(useActivity)
-    const { setActivity } = result.current
+    const { startActivity } = result.current
 
     act(() => {
-      setActivity(undefined)
+      startActivity(undefined)
     })
 
     expect(result.current.currentActivity).toBe(undefined)
@@ -73,12 +73,12 @@ describe('useActivity', () => {
       // Mock getBarTime to return 0.5
       jest.spyOn(service, 'getBarTime').mockReturnValue(0.5)
       const { result } = renderHook(useActivity)
-      const { setActivity } = result.current
+      const { startActivity } = result.current
 
       expect(result.current.currentActivity).toBe(undefined)
 
       act(() => {
-        setActivity(activityName)
+        startActivity(activityName)
       })
 
       if (activityName) {
@@ -95,10 +95,10 @@ describe('useActivity', () => {
       jest.spyOn(service, 'getBarTime').mockReturnValue(0.5)
 
       const { result } = renderHook(useActivity)
-      const { setActivity } = result.current
+      const { startActivity } = result.current
 
       act(() => {
-        setActivity(activityName)
+        startActivity(activityName)
       })
 
       expect(startCounter).toHaveBeenCalledTimes(1)
@@ -129,10 +129,10 @@ describe('useActivity', () => {
         })
 
       const { result } = renderHook(useActivity)
-      const { setActivity } = result.current
+      const { startActivity } = result.current
 
       act(() => {
-        setActivity(activityName)
+        startActivity(activityName)
       })
 
       expect(contextFn).toHaveBeenCalledTimes(1)
@@ -152,10 +152,10 @@ describe('useActivity', () => {
       })
 
     const { result } = renderHook(useActivity)
-    const { setActivity } = result.current
+    const { startActivity } = result.current
 
     act(() => {
-      setActivity('moving', 'bar')
+      startActivity('moving', 'bar')
       // Fast forward so the timeout of 500ms is done
       jest.advanceTimersByTime(600)
     })
@@ -198,10 +198,10 @@ describe('useActivity', () => {
           timeLeft: 0.1,
         })
       const { result } = renderHook(useActivity)
-      const { setActivity } = result.current
+      const { startActivity } = result.current
 
       act(() => {
-        setActivity(activityName)
+        startActivity(activityName)
       })
       if (activityName) {
         expect(result.current.currentInfo).toEqual(infoByActivity[activityName][activityResult])
@@ -226,10 +226,10 @@ describe('useActivity', () => {
         })
 
       const { result } = renderHook(useActivity)
-      const { setActivity } = result.current
+      const { startActivity } = result.current
 
       act(() => {
-        setActivity(activityName)
+        startActivity(activityName)
         // Fast forward so the timeout of 500ms is done
         jest.advanceTimersByTime(600)
       })
@@ -244,7 +244,7 @@ describe('useActivity', () => {
         buyRobot,
         incrementBar,
         incrementFoo,
-        resultStatus: null,
+        resultStatus: 'reset',
       })
       .mockReturnValueOnce({
         buildFoobar,
@@ -254,10 +254,10 @@ describe('useActivity', () => {
         resultStatus: 'success',
       })
     const { result } = renderHook(useActivity)
-    const { setActivity } = result.current
+    const { startActivity } = result.current
 
     act(() => {
-      setActivity('foo')
+      startActivity('foo')
     })
 
     expect(stopCounter).toHaveBeenCalledTimes(1)

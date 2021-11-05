@@ -1,3 +1,5 @@
+// Modal component
+// I used react-modal to create a dynamic modal
 import { Button } from 'components/Button'
 import { ModalProps } from 'components/Modal/modal'
 import { ModalContent, modalStyle } from 'components/Modal/modal.style'

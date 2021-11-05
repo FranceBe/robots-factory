@@ -23,12 +23,13 @@ export const initialRobotContext: RobotsResourceType = {
     // default incrementFoo
   },
   resetContext: () => {
-    // default incrementFoo
+    // default resetContext
   },
   resultStatus: undefined,
 }
 
 export const resultByStatus: Record<string, ResultStatus> = {
   failure: 'failure',
+  reset: 'reset',
   success: 'success',
 }

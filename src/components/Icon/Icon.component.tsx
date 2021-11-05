@@ -1,5 +1,6 @@
-// We are using Font Awesome to display all the icons we need.
-// By using the prop "type" we can chose which font awesome icon to display
+// Icon component
+// I am using Font Awesome to display all the icons we need
+// By providing the prop "type" I can chose which Font Awesome icon to display
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faCheck, faRobot, faRoute, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
