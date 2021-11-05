@@ -1,6 +1,7 @@
 import { act } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { useRobotsContext } from 'contexts/robotsContext/robotsContext.hook'
+import { defaultStatus } from 'contexts/robotsContext/robotsContext.variables'
 import { ActivityType } from 'hooks/useActivity/useActivity'
 import { useActivity } from 'hooks/useActivity/useActivity.hook'
 import * as service from 'hooks/useActivity/useActivity.utils'
@@ -10,6 +11,7 @@ import {
   timeBaseByActivity,
 } from 'hooks/useActivity/useActivity.variables'
 import { useTimer } from 'hooks/useTimer'
+import { Status } from 'utils/common.variables'
 
 jest.mock('contexts/robotsContext/robotsContext.hook')
 jest.mock('hooks/useTimer')
@@ -27,11 +29,13 @@ describe('useActivity', () => {
   beforeEach(() => {
     jest.useFakeTimers()
     useRobotsContextMock.mockReturnValue({
+      bar: 0,
       buildFoobar,
       buyRobot,
+      foo: 0,
       incrementBar,
       incrementFoo,
-      resultStatus: undefined,
+      resultStatus: defaultStatus,
     })
     useTimerMock.mockReturnValue({
       startCounter,
@@ -164,17 +168,17 @@ describe('useActivity', () => {
     expect(startCounter).toHaveBeenCalledTimes(2)
   })
 
-  const casesResult: [ActivityType, string][] = [
-    ['foo', 'success'],
-    ['bar', 'success'],
-    ['foobar', 'success'],
-    ['robot', 'success'],
-    ['moving', 'success'],
-    ['foo', 'failure'],
-    ['bar', 'failure'],
-    ['foobar', 'failure'],
-    ['robot', 'failure'],
-    ['moving', 'failure'],
+  const casesResult: [ActivityType, Status][] = [
+    ['foo', Status.success],
+    ['bar', Status.success],
+    ['foobar', Status.success],
+    ['robot', Status.success],
+    ['moving', Status.success],
+    ['foo', Status.failure],
+    ['bar', Status.failure],
+    ['foobar', Status.failure],
+    ['robot', Status.failure],
+    ['moving', Status.failure],
   ]
   it.each(casesResult)(
     'should return the %s %s info',
@@ -184,7 +188,7 @@ describe('useActivity', () => {
         buyRobot,
         incrementBar,
         incrementFoo,
-        resultStatus: activityResult,
+        resultStatus: { ...defaultStatus, [`${activityName}`]: activityResult },
       })
       useTimerMock
         .mockReturnValue({
@@ -197,6 +201,7 @@ describe('useActivity', () => {
           status: 'pending',
           timeLeft: 0.1,
         })
+
       const { result } = renderHook(useActivity)
       const { startActivity } = result.current
 
@@ -237,21 +242,91 @@ describe('useActivity', () => {
       expect(startCounter).toHaveBeenCalledTimes(2)
     },
   )
-  it('should call stopCounter and reset all value to default when resultStatus is null', () => {
+  it('should repeat startCounter when activity is foobar only if there is enough resources in context', () => {
+    useTimerMock
+      .mockReturnValue({
+        startCounter,
+        status: 'done',
+        timeLeft: 0,
+      })
+      .mockReturnValueOnce({
+        startCounter,
+        status: 'pending',
+        timeLeft: 0.1,
+      })
+
+    useRobotsContextMock.mockReturnValue({
+      bar: 3,
+      buildFoobar,
+      buyRobot,
+      foo: 3,
+      incrementBar,
+      incrementFoo,
+      resultStatus: defaultStatus,
+    })
+
+    const { result } = renderHook(useActivity)
+    const { startActivity } = result.current
+
+    act(() => {
+      startActivity('foobar')
+      // Fast forward so the timeout of 500ms is done
+      jest.advanceTimersByTime(600)
+    })
+
+    expect(startCounter).toHaveBeenCalledTimes(2)
+  })
+
+  it('should not not repeat startCounter when activity is foobar if there is not enough resources', () => {
+    useTimerMock
+      .mockReturnValue({
+        startCounter,
+        status: 'done',
+        timeLeft: 0,
+      })
+      .mockReturnValueOnce({
+        startCounter,
+        status: 'pending',
+        timeLeft: 0.1,
+      })
+
+    useRobotsContextMock.mockReturnValue({
+      bar: 0,
+      buildFoobar,
+      buyRobot,
+      foo: 0,
+      incrementBar,
+      incrementFoo,
+      resultStatus: defaultStatus,
+    })
+
+    const { result } = renderHook(useActivity)
+    const { startActivity } = result.current
+
+    act(() => {
+      startActivity('foobar')
+      // Fast forward so the timeout of 500ms is done
+      jest.advanceTimersByTime(600)
+    })
+
+    expect(startCounter).toHaveBeenCalledTimes(1)
+  })
+
+  it('should call stopCounter and reset all value to default when resultStatus.reset is success', () => {
     useRobotsContextMock
       .mockReturnValue({
         buildFoobar,
         buyRobot,
         incrementBar,
         incrementFoo,
-        resultStatus: 'reset',
+        resultStatus: { ...defaultStatus, reset: Status.success },
       })
       .mockReturnValueOnce({
         buildFoobar,
         buyRobot,
         incrementBar,
         incrementFoo,
-        resultStatus: 'success',
+        resultStatus: { ...defaultStatus, foo: Status.success },
       })
     const { result } = renderHook(useActivity)
     const { startActivity } = result.current

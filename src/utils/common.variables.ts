@@ -7,7 +7,9 @@ export enum Status {
   success = 'success',
   failure = 'failure',
   undone = 'undone',
+  reset = 'reset',
 }
+
 export const requirement = {
   foobar: {
     bar: 1,

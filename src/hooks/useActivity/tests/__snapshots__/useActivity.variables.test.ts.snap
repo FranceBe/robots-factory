@@ -28,6 +28,10 @@ Object {
       },
       "textInfo": "Le robot a fini d'assembler un Bar.",
     },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
   },
   "foo": Object {
     "current": Object {
@@ -47,6 +51,10 @@ Object {
         "type": "success",
       },
       "textInfo": "Le robot a fini d'assembler un Foo.",
+    },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
     },
   },
   "foobar": Object {
@@ -71,6 +79,10 @@ Object {
       },
       "textInfo": "Succès : Le robot a fini d'assembler un Foobar.",
     },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
   },
   "moving": Object {
     "current": Object {
@@ -84,6 +96,10 @@ Object {
       "textInfo": "",
     },
     "success": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+    "undone": Object {
       "iconInfo": undefined,
       "textInfo": "",
     },
@@ -103,6 +119,10 @@ Object {
         "type": "success",
       },
       "textInfo": "Succès : Le robot a acheté un nouveau robot.",
+    },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
     },
   },
 }

@@ -28,6 +28,7 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
       iconInfo: { color: palette.green_primary, type: 'success' },
       textInfo: "Le robot a fini d'assembler un Bar.",
     },
+    undone: emptyInfo,
   },
   foo: {
     current: {
@@ -39,6 +40,7 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
       iconInfo: { color: palette.green_primary, type: 'success' },
       textInfo: "Le robot a fini d'assembler un Foo.",
     },
+    undone: emptyInfo,
   },
   foobar: {
     current: {
@@ -58,6 +60,7 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
       iconInfo: { color: palette.green_primary, type: 'success' },
       textInfo: "Succès : Le robot a fini d'assembler un Foobar.",
     },
+    undone: emptyInfo,
   },
   moving: {
     current: {
@@ -68,6 +71,7 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
     },
     failure: emptyInfo,
     success: emptyInfo,
+    undone: emptyInfo,
   },
   robot: {
     current: emptyInfo,
@@ -79,6 +83,7 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
       },
       textInfo: 'Succès : Le robot a acheté un nouveau robot.',
     },
+    undone: emptyInfo,
   },
 }
 

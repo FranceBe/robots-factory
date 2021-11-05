@@ -1,3 +1,5 @@
+import { Status } from 'utils/common.variables'
+
 type ResourceType = {
   foo: number
   bar: number
@@ -5,7 +7,14 @@ type ResourceType = {
   robot: number
 }
 
-export type ResultStatus = 'success' | 'failure' | 'reset' | undefined
+export type ResultStatus = {
+  foo: Status
+  bar: Status
+  foobar: Status
+  robot: Status
+  reset: Status
+  moving: Status
+}
 
 export type RobotsResourceType = ResourceType & {
   buildFoobar: () => void

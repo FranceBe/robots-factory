@@ -1,4 +1,5 @@
 import { ResourceType, ResultStatus, RobotsResourceType } from 'contexts/robotsContext/robotContext'
+import { Status } from 'utils/common.variables'
 
 export const defaultRobotsResources: ResourceType = {
   bar: 0,
@@ -7,6 +8,14 @@ export const defaultRobotsResources: ResourceType = {
   robot: 2,
 }
 
+export const defaultStatus: ResultStatus = {
+  bar: Status.undone,
+  foo: Status.undone,
+  foobar: Status.undone,
+  moving: Status.success,
+  reset: Status.undone,
+  robot: Status.undone,
+}
 // Create an initial context object to match and define types
 export const initialRobotContext: RobotsResourceType = {
   ...defaultRobotsResources,
@@ -25,11 +34,5 @@ export const initialRobotContext: RobotsResourceType = {
   resetContext: () => {
     // default resetContext
   },
-  resultStatus: undefined,
-}
-
-export const resultByStatus: Record<string, ResultStatus> = {
-  failure: 'failure',
-  reset: 'reset',
-  success: 'success',
+  resultStatus: defaultStatus,
 }

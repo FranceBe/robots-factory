@@ -2,12 +2,12 @@ import { ResourceType, ResultStatus, RobotsResourceType } from 'contexts/robotsC
 import { hasFoobarSucceeded } from 'contexts/robotsContext/robotContext.utils'
 import {
   defaultRobotsResources,
+  defaultStatus,
   initialRobotContext,
-  resultByStatus,
 } from 'contexts/robotsContext/robotsContext.variables'
 import { ContextType, createContext, ReactNode, useContext } from 'react'
 import React, { useState } from 'react'
-import { requirement } from 'utils/common.variables'
+import { requirement, Status } from 'utils/common.variables'
 
 export const RobotsContext = createContext<RobotsResourceType>(initialRobotContext)
 
@@ -25,20 +25,20 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
   const [barState, setBar] = useState(bar)
   const [foobarState, setFoobar] = useState(foobar)
   const [robotState, setRobot] = useState(robot)
-  const [resultStatus, setResultStatus] = useState<ResultStatus>()
+  const [resultStatus, setResultStatus] = useState<ResultStatus>(defaultStatus)
 
   // Function that adds a Foo to global context
   const incrementFoo = () => {
     setFoo((fooState) => fooState + 1)
     // Result is always success
-    setResultStatus(resultByStatus.success)
+    setResultStatus((status) => ({ ...status, foo: Status.success }))
   }
 
   // Function that add a Bar to global context
   const incrementBar = () => {
     setBar((barState) => barState + 1)
     // Result is always success
-    setResultStatus(resultByStatus.success)
+    setResultStatus((status) => ({ ...status, bar: Status.success }))
   }
 
   // Function that adds a Robot to global context if there is enough Foo and Foobar
@@ -49,7 +49,7 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
       setFoobar((foobarState) => foobarState - 3)
       setRobot((robotState) => robotState + 1)
       // Result is always success
-      setResultStatus(resultByStatus.success)
+      setResultStatus((status) => ({ ...status, robot: Status.success }))
     }
   }
 
@@ -60,9 +60,9 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
     if (fooState >= requirement.foobar.foo && barState >= requirement.foobar.bar) {
       const hasSucceeded = hasFoobarSucceeded()
       // Set result depending on the value returned by hasFoobarSucceeded utils
-      setResultStatus(hasSucceeded)
+      setResultStatus((status) => ({ ...status, foobar: Status[hasSucceeded] }))
 
-      if (hasSucceeded === resultByStatus.success) {
+      if (hasSucceeded === Status.success) {
         setFoo((fooState) => fooState - 1)
         setBar((bar) => bar - 1)
         setFoobar((foobarState) => foobarState + 1)
@@ -79,7 +79,7 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
     setBar(defaultRobotsResources.bar)
     setFoobar(defaultRobotsResources.foobar)
     setRobot(defaultRobotsResources.robot)
-    setResultStatus('reset')
+    setResultStatus((status) => ({ ...status, reset: Status.success }))
   }
 
   return (

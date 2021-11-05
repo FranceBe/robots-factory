@@ -12,6 +12,7 @@ import {
 } from 'hooks/useActivity/useActivity.variables'
 import { useTimer } from 'hooks/useTimer'
 import { useEffect, useState } from 'react'
+import { requirement, Status } from 'utils/common.variables'
 
 export const useActivity = (): {
   currentActivity: ActivityType
@@ -24,7 +25,8 @@ export const useActivity = (): {
   const { timeLeft, startCounter, status, stopCounter } = useTimer()
 
   // Use useRobotContext hook
-  const { buildFoobar, buyRobot, incrementBar, incrementFoo, resultStatus } = useRobotsContext()
+  const { buildFoobar, buyRobot, incrementBar, incrementFoo, resultStatus, foo, bar } =
+    useRobotsContext()
 
   const [currentActivity, setCurrentActivity] = useState<ActivityType>()
   const [futureActivity, setFutureActivity] = useState<ActivityType>()
@@ -40,20 +42,27 @@ export const useActivity = (): {
     }
 
     if (status === statusTimer.done && currentActivity === nameByActivity.moving) {
-      // Set future activity when robot has moved
+      // Start future activity when robot has moved
       timer = setTimeout(() => startActivity(futureActivity), 500)
     }
 
     if (status === statusTimer.done && currentActivity === nameByActivity.foo) {
-      // Set Foo activity again, repeatedly 500ms after the end of previous Foo activity
+      // Start Foo activity again, repeatedly 500ms after the end of previous Foo activity
       timer = setTimeout(() => startActivity(currentActivity), 500)
     }
 
     if (status === statusTimer.done && currentActivity === nameByActivity.bar) {
-      // Set Bar activity again, repeatedly 500ms after the end of previous Bar activity
+      // Start Bar activity again, repeatedly 500ms after the end of previous Bar activity
       timer = setTimeout(() => startActivity(currentActivity), 500)
     }
 
+    if (status === statusTimer.done && currentActivity === nameByActivity.foobar) {
+      if (foo > requirement.foobar.foo && bar > requirement.foobar.bar) {
+        // Start Bar activity again, repeatedly 500ms after the end of previous Bar activity
+        // If there is enough resources
+        timer = setTimeout(() => startActivity(currentActivity), 500)
+      }
+    }
     return () => clearTimeout(timer)
   }, [status])
 
@@ -62,7 +71,7 @@ export const useActivity = (): {
       // Update the icon and text info after an activity is done
       setResultInfo(currentActivity)
     }
-    if (resultStatus === 'reset') {
+    if (resultStatus.reset === Status.success) {
       // Clean states and stop counter when resultStatus is null
       stopCounter()
       setTimeBase(0)
@@ -122,7 +131,7 @@ export const useActivity = (): {
   const setResultInfo = (activity: ActivityType) => {
     // Set info icon & text to display after activity ended
     if (resultStatus && activity) {
-      setCurrentInfo(infoByActivity[activity][resultStatus])
+      setCurrentInfo(infoByActivity[activity][resultStatus[activity]])
     }
   }
   return {
