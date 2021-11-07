@@ -7,7 +7,7 @@ import { Button } from 'components/Button'
 import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import { palette } from 'styles/variables'
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 describe('Button component', () => {
   const initTest = (props?: ButtonProps) => render(<Button {...props}>Button text</Button>)

@@ -1,15 +1,11 @@
-// useTime hook starts a countdown from the provided timeBase
+// useTime hook starts a countdown from the provided taskTime
 // and return the time left until it reaches 0 every 100ms
 // It also provide a stopCounter function and a status to know if the countdown is over
 
+import { UseTimerType } from 'hooks/useTimer/useTimer'
 import { useEffect, useState } from 'react'
 
-export const useTimer = (): {
-  timeLeft: number
-  status: string
-  startCounter: (timeBase: number) => void
-  stopCounter: () => void
-} => {
+export const useTimer = (): UseTimerType => {
   const [timeLeft, setTimeLeft] = useState(0)
   const [hasCounterFinished, setCounterFinished] = useState<boolean | undefined>(undefined)
   const [status, setStatus] = useState('not-started')
@@ -39,10 +35,10 @@ export const useTimer = (): {
     setTimeLeft((timeLeft) => Math.round((timeLeft - 0.1) * 100) / 100)
   }
 
-  const startCounter = (timeBase: number) => {
-    // Set time left to the provided timeBase
+  const startCounter = (taskTime: number) => {
+    // Set time left to the provided taskTime
     // So the counter starts counting from this value
-    setTimeLeft(timeBase)
+    setTimeLeft(taskTime)
     // Set status to "started"
     setStatus('started')
     setCounterFinished(false)

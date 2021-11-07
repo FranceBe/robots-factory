@@ -13,9 +13,13 @@ import {
   RobotsContainer,
 } from 'components/RobotCard/robotCard.style'
 import React from 'react'
+import { IconEnum, ThemeType } from 'utils/common.enum'
 
 export const RobotCard: React.FC<RobotCardProps> = ({
-  buttons,
+  fooButton,
+  barButton,
+  foobarButton,
+  robotButton,
   loadingBar,
   iconInfo,
   textInfo,
@@ -24,13 +28,23 @@ export const RobotCard: React.FC<RobotCardProps> = ({
   return (
     <CardBackground data-testid={'robot-card'}>
       <RobotsContainer>
-        <Icon type={'robot'} size={'3x'} />
+        <Icon type={IconEnum.robot} size={'3x'} />
         <span>Robot {robotId}</span>
       </RobotsContainer>
       <ButtonsAndLoadingContainer>
         <ButtonsContainer>
-          {buttons &&
-            buttons.map((button, index) => <Button key={`button-${index}`} {...button} />)}
+          <Button {...fooButton} buttonType={ThemeType.primary}>
+            Miner Foo
+          </Button>
+          <Button {...barButton} buttonType={ThemeType.primary}>
+            Miner Bar
+          </Button>
+          <Button {...foobarButton} buttonType={ThemeType.primary}>
+            Assembler Foobar
+          </Button>
+          <Button {...robotButton} buttonType={ThemeType.secondary}>
+            Acheter un robot
+          </Button>
         </ButtonsContainer>
         <LoadingAndInfoContainer>
           <LoadingBar {...loadingBar} />

@@ -3,7 +3,7 @@ import { Icon } from 'components/Icon'
 import { Totals } from 'components/Totals'
 import { TotalsProps } from 'components/Totals/totals'
 import React from 'react'
-import { ThemeType } from 'utils/common.variables'
+import { IconEnum, ThemeType } from 'utils/common.enum'
 
 export default {
   component: Totals,
@@ -14,13 +14,13 @@ export const Primary: React.FC<TotalsProps> = () => (
   <>
     <Totals label={'Foo'} total={4} />
     <br />
-    <Totals label={<Icon type={'robot'} />} total={4} />
+    <Totals label={<Icon type={IconEnum.robot} />} total={4} />
   </>
 )
 export const Secondary: React.FC<TotalsProps> = () => (
   <>
     <Totals type={ThemeType.secondary} label={'Foo'} total={4} />
     <br />
-    <Totals type={ThemeType.secondary} label={<Icon type={'robot'} />} total={4} />
+    <Totals type={ThemeType.secondary} label={<Icon type={IconEnum.robot} />} total={4} />
   </>
 )

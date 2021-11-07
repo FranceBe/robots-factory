@@ -1,4 +1,4 @@
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 export type TotalsProps = {
   type?: ThemeType

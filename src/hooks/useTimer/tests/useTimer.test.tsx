@@ -13,7 +13,7 @@ describe('useTimer', () => {
     jest.useRealTimers()
   })
 
-  it('should return 0 if timeBase provided is 0', () => {
+  it('should return 0 if taskTime provided is 0', () => {
     const { result } = renderHook(() => useTimer())
     const { startCounter, timeLeft } = result.current
     // when counter is started
@@ -23,7 +23,7 @@ describe('useTimer', () => {
 
     expect(timeLeft).toBe(0)
   })
-  it('should call setTimeout when timeBase provided is > 0', async () => {
+  it('should call setTimeout when taskTime provided is > 0', async () => {
     const setTimeoutSpy = jest.spyOn(global, 'setTimeout')
     const { result } = renderHook(() => useTimer())
     const { startCounter } = result.current

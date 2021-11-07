@@ -7,16 +7,12 @@ import { RobotsContextProvider } from 'contexts/robotsContext'
 import { ResourceType } from 'contexts/robotsContext/robotContext'
 import { defaultRobotsResources } from 'contexts/robotsContext/robotsContext.variables'
 import * as useActivityHook from 'hooks/useActivity'
-import { ActivityType } from 'hooks/useActivity/useActivity'
-import { nameByActivity } from 'hooks/useActivity/useActivity.variables'
 import React from 'react'
+import { ActivityName } from 'utils/common.enum'
 
 describe('RobotManager Container', () => {
-  let setContext: jest.Mock
-
   beforeEach(() => {
     jest.useFakeTimers()
-    setContext = jest.fn()
     jest.spyOn(global.Math, 'random').mockReturnValue(0.01)
   })
 
@@ -32,7 +28,7 @@ describe('RobotManager Container', () => {
   const initTest = (contextProps: ResourceType) =>
     render(
       <RobotsContextProvider {...contextProps}>
-        <RobotManager robotId={'1'} />,
+        <RobotManager robotId={1} />,
       </RobotsContextProvider>,
     )
 
@@ -128,22 +124,24 @@ describe('RobotManager Container', () => {
       },
     )
 
-    const casesStartActivity: [string, ActivityType][] = [
-      ['Miner Foo', nameByActivity.foo],
-      ['Miner Bar', nameByActivity.bar],
-      ['Assembler Foobar', nameByActivity.foobar],
-      ['Acheter un robot', nameByActivity.robot],
+    const casesStartActivity: [string, ActivityName][] = [
+      ['Miner Foo', ActivityName.foo],
+      ['Miner Bar', ActivityName.bar],
+      ['Assembler Foobar', ActivityName.foobar],
+      ['Acheter un robot', ActivityName.robot],
     ]
 
     it.each(casesStartActivity)(
       'should call startActivity with corresponding activity when %s button is clicked',
-      (buttonName: string, activityName: ActivityType) => {
+      (buttonName: string, activityName: ActivityName) => {
         const startActivity = jest.fn()
+        const cleanActivity = jest.fn()
         jest.spyOn(useActivityHook, 'useActivity').mockReturnValue({
+          cleanActivity,
           currentActivity: activityName,
           currentInfo: { iconInfo: undefined, textInfo: '' },
           startActivity,
-          timeBase: 1,
+          taskTime: 1,
           timeLeft: 0.1,
         })
 
@@ -160,11 +158,13 @@ describe('RobotManager Container', () => {
   })
   it('should call startActivity with "moving" and a future activity when activity changes', () => {
     const startActivity = jest.fn()
+    const cleanActivity = jest.fn()
     jest.spyOn(useActivityHook, 'useActivity').mockReturnValue({
-      currentActivity: 'foo', // Robot is currently mining Foo
+      cleanActivity,
+      currentActivity: ActivityName.foo, // Robot is currently mining Foo
       currentInfo: { iconInfo: undefined, textInfo: '' },
       startActivity,
-      timeBase: 1,
+      taskTime: 1,
       timeLeft: 0.1,
     })
     initTest(defaultRobotsResources)

@@ -10,13 +10,9 @@ describe('Modal component', () => {
   const onClickMock = jest.fn()
   const initTest = (props?: Partial<ModalProps>) =>
     render(
-      <Modal
-        isOpen={true}
-        content={<p>Modal Content</p>}
-        buttonText={'Click'}
-        onButtonClick={onClickMock}
-        {...props}
-      />,
+      <Modal isOpen={true} buttonText={'Click'} onButtonClick={onClickMock} {...props}>
+        <p>Modal Content</p>
+      </Modal>,
     )
   describe('Given modal is open', () => {
     it('should match snapshot', () => {

@@ -127,30 +127,3 @@ Object {
   },
 }
 `;
-
-exports[`useActivity variables nameByActivity should match snapshot 1`] = `
-Object {
-  "bar": "bar",
-  "foo": "foo",
-  "foobar": "foobar",
-  "moving": "moving",
-  "robot": "robot",
-}
-`;
-
-exports[`useActivity variables statusTimer should match snapshot 1`] = `
-Object {
-  "done": "done",
-  "not-started": "not-started",
-  "started": "started",
-}
-`;
-
-exports[`useActivity variables timeBaseByActivity should match snapshot 1`] = `
-Object {
-  "foo": 1,
-  "foobar": 2,
-  "moving": 5,
-  "robot": 0,
-}
-`;

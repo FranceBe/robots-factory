@@ -6,7 +6,7 @@ import { Totals } from 'components/Totals'
 import { TotalsProps } from 'components/Totals/totals'
 import React from 'react'
 import { palette } from 'styles/variables'
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 describe('Totals component', () => {
   const initTest = (props?: Partial<TotalsProps>) =>

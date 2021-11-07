@@ -1,5 +1,5 @@
-// Since we use FontAwesome icon, we assume the FontAwesome module
-// is tested by itself. To test our Icon component, we will only
+// Since I use FontAwesome icon, I assume the FontAwesome module
+// is tested by itself. To test this Icon component, I will only
 // test that it renders correctly with the corresponding FontAwesome icon
 import '@testing-library/jest-dom/extend-expect'
 
@@ -7,17 +7,26 @@ import { render, screen } from '@testing-library/react'
 import { FAIconByIconProps, Icon } from 'components/Icon'
 import { IconProps } from 'components/Icon/icon'
 import React from 'react'
+import { IconEnum } from 'utils/common.enum'
 
 describe('Icon component', () => {
-  const initTest = (props: IconProps) => render(<Icon {...props} />)
+  const initTest = (props?: IconProps) => render(<Icon {...props} />)
   describe('FAIconByIconProps', () => {
     it('should match snapshot', () => {
       expect(FAIconByIconProps).toMatchSnapshot()
     })
   })
+  describe('Given no props is provided', () => {
+    it('should render the FontAwesome robot icon by default', () => {
+      initTest()
+      const robotIcon = screen.getByRole('img', { hidden: true })
+      expect(robotIcon).toBeInTheDocument()
+      expect(robotIcon).toHaveClass('fa-robot')
+    })
+  })
   describe('Given type is "robot"', () => {
     it('should render the FontAwesome robot icon', () => {
-      initTest({ type: 'robot' })
+      initTest({ type: IconEnum.robot })
       const robotIcon = screen.getByRole('img', { hidden: true })
       expect(robotIcon).toBeInTheDocument()
       expect(robotIcon).toHaveClass('fa-robot')
@@ -25,7 +34,7 @@ describe('Icon component', () => {
   })
   describe('Given type is "spinner"', () => {
     it('should render the FontAwesome spinner icon', () => {
-      initTest({ type: 'spinner' })
+      initTest({ type: IconEnum.spinner })
       const spinnerIcon = screen.getByRole('img', { hidden: true })
       expect(spinnerIcon).toBeInTheDocument()
       expect(spinnerIcon).toHaveClass('fa-spinner')
@@ -33,7 +42,7 @@ describe('Icon component', () => {
   })
   describe('Given type is "failure"', () => {
     it('should render the FontAwesome times icon', () => {
-      initTest({ type: 'failure' })
+      initTest({ type: IconEnum.failure })
       const failureIcon = screen.getByRole('img', { hidden: true })
       expect(failureIcon).toBeInTheDocument()
       expect(failureIcon).toHaveClass('fa-times')
@@ -41,7 +50,7 @@ describe('Icon component', () => {
   })
   describe('Given type is "success"', () => {
     it('should render the FontAwesome check icon', () => {
-      initTest({ type: 'success' })
+      initTest({ type: IconEnum.success })
       const successIcon = screen.getByRole('img', { hidden: true })
       expect(successIcon).toBeInTheDocument()
       expect(successIcon).toHaveClass('fa-check')
@@ -49,7 +58,7 @@ describe('Icon component', () => {
   })
   describe('Given type is "moving"', () => {
     it('should render the FontAwesome check icon', () => {
-      initTest({ type: 'moving' })
+      initTest({ type: IconEnum.moving })
       const successIcon = screen.getByRole('img', { hidden: true })
       expect(successIcon).toBeInTheDocument()
       expect(successIcon).toHaveClass('fa-route')

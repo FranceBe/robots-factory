@@ -2,7 +2,7 @@
 import { TotalsProps } from 'components/Totals/totals'
 import { TotalsContainer } from 'components/Totals/totals.style'
 import React from 'react'
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 export const Totals: React.FC<TotalsProps> = ({ type = ThemeType.primary, total, label }) => {
   return (

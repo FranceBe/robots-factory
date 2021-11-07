@@ -13,10 +13,13 @@ export const Open: React.FC<ModalProps> = () => {
   return (
     <Modal
       isOpen={true}
-      content={<p>Modal Content</p>}
       buttonText={'Click'}
-      onButtonClick={() => console.log('click')}
-    />
+      onButtonClick={() => {
+        // onButtonClick
+      }}
+    >
+      <p>Modal Content</p>
+    </Modal>
   )
 }
 
@@ -27,12 +30,9 @@ export const ClickToOpen: React.FC<ModalProps> = () => {
   return (
     <>
       <button onClick={openModal}>Click to Open</button>
-      <Modal
-        isOpen={isOpen}
-        content={<p>Modal Content</p>}
-        buttonText={'Fermer'}
-        onButtonClick={closeModal}
-      />
+      <Modal isOpen={isOpen} buttonText={'Fermer'} onButtonClick={closeModal}>
+        <p>Modal Content</p>
+      </Modal>
     </>
   )
 }

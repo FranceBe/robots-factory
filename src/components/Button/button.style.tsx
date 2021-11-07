@@ -2,7 +2,7 @@ import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import styled from 'styled-components'
 import { fontSizes, palette, spaces } from 'styles/variables'
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 export const ButtonContainer = styled((props) => <button {...props} />)<ButtonProps>`
   height: ${spaces.xx_large};

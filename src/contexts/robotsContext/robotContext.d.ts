@@ -1,4 +1,4 @@
-import { Status } from 'utils/common.variables'
+import { Status } from 'utils/common.enum'
 
 type ResourceType = {
   foo: number
@@ -18,6 +18,7 @@ export type ResultStatus = {
 
 export type RobotsResourceType = ResourceType & {
   buildFoobar: () => void
+  cleanReset: () => void
   incrementBar: () => void
   incrementFoo: () => void
   buyRobot: () => void

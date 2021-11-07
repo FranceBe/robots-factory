@@ -4,18 +4,19 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core'
 import { faCheck, faRobot, faRoute, faSpinner, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { IconProps, IconType } from 'components/Icon/icon'
+import { IconProps } from 'components/Icon/icon'
 import React from 'react'
+import { IconEnum } from 'utils/common.enum'
 
-export const FAIconByIconProps: Record<IconType, IconProp> = {
-  failure: faTimes,
-  moving: faRoute,
-  robot: faRobot,
-  spinner: faSpinner,
-  success: faCheck,
+export const FAIconByIconProps: Record<IconEnum, IconProp> = {
+  [IconEnum.failure]: faTimes,
+  [IconEnum.moving]: faRoute,
+  [IconEnum.robot]: faRobot,
+  [IconEnum.spinner]: faSpinner,
+  [IconEnum.success]: faCheck,
 }
 
-export const Icon: React.FC<IconProps> = ({ type = 'robot', ...rest }) => {
+export const Icon: React.FC<IconProps> = ({ type = IconEnum.robot, ...rest }) => {
   return <FontAwesomeIcon {...rest} icon={FAIconByIconProps[type]} />
 }
 

@@ -11,19 +11,19 @@ export default {
 
 export const Default: React.FC<LoadingBarProps> = () => (
   <>
-    <LoadingBar timeBase={60} timeLeft={60} />
+    <LoadingBar taskTime={60} timeLeft={60} />
     <br />
-    <LoadingBar timeBase={60} timeLeft={50} />
+    <LoadingBar taskTime={60} timeLeft={50} />
     <br />
-    <LoadingBar timeBase={60} timeLeft={40} />
+    <LoadingBar taskTime={60} timeLeft={40} />
     <br />
-    <LoadingBar timeBase={60} timeLeft={30} />
+    <LoadingBar taskTime={60} timeLeft={30} />
     <br />
-    <LoadingBar timeBase={60} timeLeft={20} />
+    <LoadingBar taskTime={60} timeLeft={20} />
     <br />
-    <LoadingBar timeBase={60} timeLeft={10} />
+    <LoadingBar taskTime={60} timeLeft={10} />
     <br />
-    <LoadingBar timeBase={60} />
+    <LoadingBar taskTime={60} />
   </>
 )
 
@@ -47,7 +47,7 @@ export const Animated: React.FC<LoadingBarProps> = () => {
       {timeLeft === 0 && <button onClick={stopCountDown}> Reset </button>}
       <br />
       <br />
-      <LoadingBar timeBase={5} timeLeft={timeLeft} />
+      <LoadingBar taskTime={5} timeLeft={timeLeft} />
     </div>
   )
 }

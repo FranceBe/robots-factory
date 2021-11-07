@@ -10,18 +10,16 @@ import {
   TitleContainer,
   TotalsGroupContainer,
 } from 'pages/Home/home.style'
-import { arrayFromContextRobotLength, getTotalsFromContext } from 'pages/Home/home.utils'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { robotsToWin } from 'utils/settings'
 
 export const Home: React.FC = () => {
   const { resetContext, ...context } = useRobotsContext()
   const { robot } = context
-  const [robotLines, setRobotLines] = useState(arrayFromContextRobotLength(context))
   const [isModalOpen, setModalOpen] = useState(false)
 
   useEffect(() => {
-    setRobotLines(arrayFromContextRobotLength(context))
-    if (robot === 20) {
+    if (robot === robotsToWin) {
       setModalOpen(true)
     }
   }, [robot])
@@ -31,6 +29,8 @@ export const Home: React.FC = () => {
     setModalOpen(false)
   }
 
+  const robotLines = useMemo(() => [...Array(robot)], [robot])
+
   return (
     <>
       <TitleContainer>
@@ -38,28 +38,30 @@ export const Home: React.FC = () => {
       </TitleContainer>
       <ContentContainer>
         <RobotsManagementContainer>
-          {robotLines.map((lineKey) => (
-            <RobotManager key={`robot-${lineKey + 1}`} robotId={`${lineKey + 1}`} />
+          {robotLines.map((undefinedItem, index: number) => (
+            <RobotManager key={`robot-${index + 1}`} robotId={index + 1} shouldStop={isModalOpen} />
           ))}
         </RobotsManagementContainer>
         <TotalsGroupContainer>
-          <TotalsGroup content={getTotalsFromContext(context)} />
+          <TotalsGroup
+            totals={{
+              bar: context.bar,
+              foo: context.foo,
+              foobar: context.foobar,
+              robot: context.robot,
+            }}
+          />
         </TotalsGroupContainer>
       </ContentContainer>
-      <Modal
-        isOpen={isModalOpen}
-        content={
-          <>
-            <p>
-              Vous avez obtenu <span>20 robots</span>. Bravo !
-            </p>
-            <p>Le jeu est maintenant terminé.</p>
-            <p>En cliquand sur "Fermer", le jeu sera remis à 0.</p>
-          </>
-        }
-        onButtonClick={resetGame}
-        buttonText={'Fermer'}
-      />
+      <Modal isOpen={isModalOpen} onButtonClick={resetGame} buttonText={'Fermer'}>
+        <>
+          <p>
+            Vous avez obtenu <span>{robotsToWin} robots</span>. Bravo !
+          </p>
+          <p>Le jeu est maintenant terminé.</p>
+          <p>En cliquand sur "Fermer", le jeu sera remis à 0.</p>
+        </>
+      </Modal>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes } from 'react'
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   buttonType?: ThemeType

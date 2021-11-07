@@ -7,7 +7,8 @@ import {
 } from 'contexts/robotsContext/robotsContext.variables'
 import { ContextType, createContext, ReactNode, useContext } from 'react'
 import React, { useState } from 'react'
-import { requirement, Status } from 'utils/common.variables'
+import { Status } from 'utils/common.enum'
+import { requirement } from 'utils/settings'
 
 export const RobotsContext = createContext<RobotsResourceType>(initialRobotContext)
 
@@ -44,9 +45,13 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
   // Function that adds a Robot to global context if there is enough Foo and Foobar
   // Do nothing if there is not enough resources
   const buyRobot = () => {
-    if (fooState >= requirement.robot.foo && foobarState >= requirement.robot.foobar) {
-      setFoo((fooState) => fooState - 6)
-      setFoobar((foobarState) => foobarState - 3)
+    const { foo: fooRequired, foobar: foobarRequired } = requirement.robot
+
+    const hasEnoughResources = fooState >= fooRequired && foobarState >= foobarRequired
+
+    if (hasEnoughResources) {
+      setFoo((fooState) => fooState - fooRequired)
+      setFoobar((foobarState) => foobarState - foobarRequired)
       setRobot((robotState) => robotState + 1)
       // Result is always success
       setResultStatus((status) => ({ ...status, robot: Status.success }))
@@ -57,18 +62,20 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
   // It has 60% chances to succeed and 40% chances to fail
   // Do nothing if there is not enough resources
   const buildFoobar = () => {
-    if (fooState >= requirement.foobar.foo && barState >= requirement.foobar.bar) {
+    const { foo: fooRequired, bar: barRequired } = requirement.foobar
+    const hasEnoughResources = fooState >= fooRequired && barState >= barRequired
+    if (hasEnoughResources) {
       const hasSucceeded = hasFoobarSucceeded()
       // Set result depending on the value returned by hasFoobarSucceeded utils
       setResultStatus((status) => ({ ...status, foobar: Status[hasSucceeded] }))
 
       if (hasSucceeded === Status.success) {
-        setFoo((fooState) => fooState - 1)
-        setBar((bar) => bar - 1)
+        setFoo((fooState) => fooState - fooRequired)
+        setBar((bar) => bar - barRequired)
         setFoobar((foobarState) => foobarState + 1)
       } else {
         // If it fails, a Foo is lost
-        setFoo((fooState) => fooState - 1)
+        setFoo((fooState) => fooState - fooRequired)
       }
     }
   }
@@ -82,12 +89,17 @@ export const RobotsContextProvider: React.FC<{ children: ReactNode } & Partial<R
     setResultStatus((status) => ({ ...status, reset: Status.success }))
   }
 
+  const cleanReset = () => {
+    setResultStatus(defaultStatus)
+  }
+
   return (
     <RobotsContext.Provider
       value={{
         bar: barState,
         buildFoobar,
         buyRobot,
+        cleanReset,
         foo: fooState,
         foobar: foobarState,
         incrementBar,

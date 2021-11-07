@@ -6,32 +6,26 @@ import { IconProps } from 'components/Icon/icon'
 import { LoadingBarProps } from 'components/LoadingBar/loadingBar'
 import { RobotCard } from 'components/RobotCard'
 import React from 'react'
-import { ThemeType } from 'utils/common.variables'
+import { IconEnum } from 'utils/common.enum'
 
 describe('RobotCard component', () => {
   // Set up test
-  const buttons: ButtonProps[] = [
-    { buttonType: ThemeType.primary, children: 'Miner Foo', isActive: true },
-    { buttonType: ThemeType.primary, children: 'Miner Bar' },
-    {
-      buttonType: ThemeType.primary,
-      children: 'Assembler Foobar',
-      disabled: true,
-    },
-    {
-      buttonType: ThemeType.secondary,
-      children: 'Acheter un robot',
-      disabled: true,
-    },
-  ]
-  const loadingBar: LoadingBarProps = { timeBase: 1, timeLeft: 0.5 }
-  const iconInfo: IconProps = { spin: true, type: 'spinner' }
+  const fooButton: ButtonProps = { isActive: true }
+  const barButton: ButtonProps = { isActive: false }
+  const foobarButton: ButtonProps = { disabled: true }
+  const robotButton: ButtonProps = { disabled: true }
+  const loadingBar: LoadingBarProps = { taskTime: 1, timeLeft: 0.5 }
+  const iconInfo: IconProps = { spin: true, type: IconEnum.spinner }
   const textInfo = 'Le robot est en train de miner du Foo. Cela prend 1s / Foo.'
-  const robotId = '1'
+  const robotId = 1
+
   const initTest = () =>
     render(
       <RobotCard
-        buttons={buttons}
+        fooButton={fooButton}
+        barButton={barButton}
+        foobarButton={foobarButton}
+        robotButton={robotButton}
         loadingBar={loadingBar}
         iconInfo={iconInfo}
         textInfo={textInfo}
@@ -58,12 +52,15 @@ describe('RobotCard component', () => {
     const robotName = `Robot ${robotId}`
     expect(screen.getByText(robotName)).toBeInTheDocument()
   })
-  it('should render buttons.length button', () => {
+  it('should render 4 buttons', () => {
     initTest()
 
     const buttonsRendered = screen.getAllByRole('button')
-    expect(buttonsRendered).toHaveLength(buttons.length)
-    buttons.forEach((button) => expect(screen.getByText(`${button.children}`)).toBeInTheDocument())
+    expect(buttonsRendered).toHaveLength(4)
+    expect(screen.getByText('Miner Foo')).toBeInTheDocument()
+    expect(screen.getByText('Miner Bar')).toBeInTheDocument()
+    expect(screen.getByText('Assembler Foobar')).toBeInTheDocument()
+    expect(screen.getByText('Acheter un robot')).toBeInTheDocument()
   })
   it('shoud render a LoadingBar', () => {
     initTest()

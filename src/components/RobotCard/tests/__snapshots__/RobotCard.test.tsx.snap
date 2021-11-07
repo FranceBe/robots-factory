@@ -127,7 +127,7 @@ exports[`RobotCard component should match snapshot 1`] = `
           class="sc-hKFxyN bmKIvQ"
         >
           <div
-            class="sc-jSFjdj gxmQZS"
+            class="sc-jSFjdj doEOTO"
             data-testid="filled-bar"
             filled="50"
           />

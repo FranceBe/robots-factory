@@ -2,7 +2,7 @@ import { TotalsProps } from 'components/Totals/totals'
 import React from 'react'
 import styled from 'styled-components'
 import { fontSizes, palette, spaces } from 'styles/variables'
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 export const TotalsContainer = styled((props) => <div {...props} />)<Partial<TotalsProps>>`
   font-size: ${fontSizes.medium};

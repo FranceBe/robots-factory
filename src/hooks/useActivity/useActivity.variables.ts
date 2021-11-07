@@ -1,13 +1,7 @@
-import { ActivityType, InfoType } from 'hooks/useActivity/useActivity'
+import { InfoType } from 'hooks/useActivity/useActivity'
 import { palette } from 'styles/variables'
-
-export const nameByActivity: Record<string, ActivityType> = {
-  bar: 'bar',
-  foo: 'foo',
-  foobar: 'foobar',
-  moving: 'moving',
-  robot: 'robot',
-}
+import { IconEnum } from 'utils/common.enum'
+import { buildFoobarChance, taskTimeByActivity, timeMinMaxForBar } from 'utils/settings'
 
 export const emptyInfo: InfoType = {
   iconInfo: undefined,
@@ -19,25 +13,25 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
     current: {
       iconInfo: {
         spin: true,
-        type: 'spinner',
+        type: IconEnum.spinner,
       },
-      textInfo: 'Le robot est en train de miner du Bar. Cela prend entre 0.5 et 2s / Bar.',
+      textInfo: `Le robot est en train de miner du Bar. Cela prend entre ${timeMinMaxForBar.min} et ${timeMinMaxForBar.max}s / Bar.`,
     },
     failure: emptyInfo,
     success: {
-      iconInfo: { color: palette.green_primary, type: 'success' },
+      iconInfo: { color: palette.green_primary, type: IconEnum.success },
       textInfo: "Le robot a fini d'assembler un Bar.",
     },
     undone: emptyInfo,
   },
   foo: {
     current: {
-      iconInfo: { spin: true, type: 'spinner' },
-      textInfo: 'Le robot est en train de miner du Foo. Cela prend 1s / Foo.',
+      iconInfo: { spin: true, type: IconEnum.spinner },
+      textInfo: `Le robot est en train de miner du Foo. Cela prend ${taskTimeByActivity.foo}s / Foo.`,
     },
     failure: emptyInfo,
     success: {
-      iconInfo: { color: palette.green_primary, type: 'success' },
+      iconInfo: { color: palette.green_primary, type: IconEnum.success },
       textInfo: "Le robot a fini d'assembler un Foo.",
     },
     undone: emptyInfo,
@@ -46,18 +40,17 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
     current: {
       iconInfo: {
         spin: true,
-        type: 'spinner',
+        type: IconEnum.spinner,
       },
-      textInfo:
-        "Le robot est en train d'assembler un Foobar. Cela prend 2s et a 60% de chance de succès.",
+      textInfo: `Le robot est en train d'assembler un Foobar. Cela prend ${taskTimeByActivity.foobar}s et a ${buildFoobarChance}% de chance de succès.`,
     },
     failure: {
-      iconInfo: { color: palette.red_primary, type: 'failure' },
+      iconInfo: { color: palette.red_primary, type: IconEnum.failure },
       textInfo:
         "Echec : Le robot n'a pas assemblé de Foobar, le Bar a pu être sauvé mais le Foo est perdu.",
     },
     success: {
-      iconInfo: { color: palette.green_primary, type: 'success' },
+      iconInfo: { color: palette.green_primary, type: IconEnum.success },
       textInfo: "Succès : Le robot a fini d'assembler un Foobar.",
     },
     undone: emptyInfo,
@@ -65,9 +58,9 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
   moving: {
     current: {
       iconInfo: {
-        type: 'moving',
+        type: IconEnum.moving,
       },
-      textInfo: "Le robot est en train de changer d'activité. Cela prend 5s.",
+      textInfo: `Le robot est en train de changer d'activité. Cela prend ${taskTimeByActivity.moving}s.`,
     },
     failure: emptyInfo,
     success: emptyInfo,
@@ -79,23 +72,10 @@ export const infoByActivity: Record<string, Record<string, InfoType>> = {
     success: {
       iconInfo: {
         color: palette.green_primary,
-        type: 'success',
+        type: IconEnum.success,
       },
       textInfo: 'Succès : Le robot a acheté un nouveau robot.',
     },
     undone: emptyInfo,
   },
-}
-
-export const timeBaseByActivity: Record<string, number> = {
-  foo: 1,
-  foobar: 2,
-  moving: 5,
-  robot: 0,
-}
-
-export const statusTimer = {
-  done: 'done',
-  'not-started': 'not-started',
-  started: 'started',
 }

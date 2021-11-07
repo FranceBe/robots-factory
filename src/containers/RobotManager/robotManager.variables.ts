@@ -1,11 +1,11 @@
-import { requirement } from 'utils/common.variables'
+import { requirement } from 'utils/settings'
 
 // Create an object matching an activity and its associated tooltip texts
+const { foo: fooForFoobar, bar: barForFoobar } = requirement.foobar
+const { foo: fooForRobot, foobar: foobarForRobot } = requirement.robot
 export const tooltipTexts: Record<string, string> = {
-  foobar:
-    '<p>Requiert <span class="foobar-foo">1 Foo</span> et <span class="foobar-bar">1 Bar</span>.</p>',
-  robot:
-    '<p>Requiert <span class="robot-foobar">3 Foobar</span>  et <span class="robot-foo">6 Foo</span>.</p>',
+  foobar: `<p>Requiert <span class="foobar-foo">${fooForFoobar} Foo</span> et <span class="foobar-bar">${barForFoobar} Bar</span>.</p>`,
+  robot: `<p>Requiert <span class="robot-foobar">${foobarForRobot} Foobar</span>  et <span class="robot-foo">${fooForRobot} Foo</span>.</p>`,
 }
 
 // Create objects matching an activity and its associated resource requirements

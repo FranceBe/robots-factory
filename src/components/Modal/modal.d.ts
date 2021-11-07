@@ -2,7 +2,7 @@ import { ReactElement } from 'react'
 
 export type ModalProps = {
   isOpen: boolean
-  content: string | ReactElement
+  children: ReactElement
   buttonText: string
   onButtonClick: () => void
 }

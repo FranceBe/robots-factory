@@ -1,31 +1,29 @@
 import '@testing-library/jest-dom/extend-expect'
 
 import { render, screen } from '@testing-library/react'
-import { Icon } from 'components/Icon'
-import { TotalsProps } from 'components/Totals/totals'
 import { TotalsGroup } from 'components/TotalsGroup'
+import { ResourceType } from 'contexts/robotsContext/robotContext'
 import React from 'react'
-import { ThemeType } from 'utils/common.variables'
 
 describe('TotalsGroup component', () => {
-  const defaultContent: TotalsProps[] = [
-    { label: 'Foo', total: 4, type: ThemeType.primary },
-    { label: 'Bar', total: 0, type: ThemeType.primary },
-    { label: 'Foobar', total: 10, type: ThemeType.primary },
-    { label: <Icon type={'robot'} />, total: 6, type: ThemeType.secondary },
-  ]
+  const totals: ResourceType = {
+    bar: 0,
+    foo: 4,
+    foobar: 10,
+    robot: 6,
+  }
 
-  const initTest = () => render(<TotalsGroup content={defaultContent} />)
+  const initTest = () => render(<TotalsGroup totals={totals} />)
 
   it('should match snapshot', () => {
     const { container } = initTest()
 
     expect(container.firstChild).toMatchSnapshot()
   })
-  it('should render content.length Totals component', () => {
+  it('should render 4 Totals component', () => {
     initTest()
 
-    expect(screen.getAllByTestId('totals-component')).toHaveLength(defaultContent.length)
+    expect(screen.getAllByTestId('totals-component')).toHaveLength(4)
   })
   it('should render each labels and total as text', () => {
     initTest()

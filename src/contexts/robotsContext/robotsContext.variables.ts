@@ -1,5 +1,5 @@
 import { ResourceType, ResultStatus, RobotsResourceType } from 'contexts/robotsContext/robotContext'
-import { Status } from 'utils/common.variables'
+import { Status } from 'utils/common.enum'
 
 export const defaultRobotsResources: ResourceType = {
   bar: 0,
@@ -23,6 +23,9 @@ export const initialRobotContext: RobotsResourceType = {
     // default buildFoobar
   },
   buyRobot: () => {
+    // default buyRobot
+  },
+  cleanReset: () => {
     // default buyRobot
   },
   incrementBar: () => {

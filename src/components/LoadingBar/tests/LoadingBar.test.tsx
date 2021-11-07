@@ -8,7 +8,7 @@ import React from 'react'
 
 describe('LoadingBar component', () => {
   const initTest = (props?: Partial<LoadingBarProps>) =>
-    render(<LoadingBar timeBase={100} {...props} />)
+    render(<LoadingBar taskTime={100} {...props} />)
 
   it('should match snapshot', () => {
     const { container } = initTest()

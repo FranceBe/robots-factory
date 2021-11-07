@@ -2,16 +2,12 @@ import { act } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
 import { useRobotsContext } from 'contexts/robotsContext/robotsContext.hook'
 import { defaultStatus } from 'contexts/robotsContext/robotsContext.variables'
-import { ActivityType } from 'hooks/useActivity/useActivity'
 import { useActivity } from 'hooks/useActivity/useActivity.hook'
 import * as service from 'hooks/useActivity/useActivity.utils'
-import {
-  emptyInfo,
-  infoByActivity,
-  timeBaseByActivity,
-} from 'hooks/useActivity/useActivity.variables'
+import { emptyInfo, infoByActivity } from 'hooks/useActivity/useActivity.variables'
 import { useTimer } from 'hooks/useTimer'
-import { Status } from 'utils/common.variables'
+import { ActivityName, Status } from 'utils/common.enum'
+import { taskTimeByActivity } from 'utils/settings'
 
 jest.mock('contexts/robotsContext/robotsContext.hook')
 jest.mock('hooks/useTimer')
@@ -23,6 +19,7 @@ describe('useActivity', () => {
   const incrementBar = jest.fn()
   const buyRobot = jest.fn()
   const buildFoobar = jest.fn()
+  const cleanReset = jest.fn()
   const startCounter = jest.fn()
   const stopCounter = jest.fn()
 
@@ -32,6 +29,7 @@ describe('useActivity', () => {
       bar: 0,
       buildFoobar,
       buyRobot,
+      cleanReset,
       foo: 0,
       incrementBar,
       incrementFoo,
@@ -64,16 +62,16 @@ describe('useActivity', () => {
 
     expect(result.current.currentActivity).toBe(undefined)
   })
-  const casesSetActivity: [ActivityType, number][] = [
-    ['foo', timeBaseByActivity.foo],
-    ['bar', 0.5],
-    ['foobar', timeBaseByActivity.foobar],
-    ['robot', timeBaseByActivity.robot],
-    ['moving', timeBaseByActivity.moving],
+  const casesSetActivity: [ActivityName, number][] = [
+    [ActivityName.foo, taskTimeByActivity.foo],
+    [ActivityName.bar, 0.5],
+    [ActivityName.foobar, taskTimeByActivity.foobar],
+    [ActivityName.robot, taskTimeByActivity.robot],
+    [ActivityName.moving, taskTimeByActivity.moving],
   ]
   it.each(casesSetActivity)(
-    'should return currentActivity as %s and corresponding currentInfo & timeBase',
-    (activityName: ActivityType, timeBase: number) => {
+    'should return currentActivity as %s and corresponding currentInfo & taskTime',
+    (activityName: ActivityName, taskTime: number) => {
       // Mock getBarTime to return 0.5
       jest.spyOn(service, 'getBarTime').mockReturnValue(0.5)
       const { result } = renderHook(useActivity)
@@ -88,13 +86,13 @@ describe('useActivity', () => {
       if (activityName) {
         expect(result.current.currentActivity).toBe(activityName)
         expect(result.current.currentInfo).toEqual(infoByActivity[activityName].current)
-        expect(result.current.timeBase).toEqual(timeBase)
+        expect(result.current.taskTime).toEqual(taskTime)
       }
     },
   )
   it.each(casesSetActivity)(
-    'should call startCounter with %s timeBase',
-    (activityName: ActivityType, timeBase: number) => {
+    'should call startCounter with %s taskTime',
+    (activityName: ActivityName, taskTime: number) => {
       // Mock getBarTime to return 0.5
       jest.spyOn(service, 'getBarTime').mockReturnValue(0.5)
 
@@ -106,20 +104,20 @@ describe('useActivity', () => {
       })
 
       expect(startCounter).toHaveBeenCalledTimes(1)
-      expect(startCounter).toHaveBeenCalledWith(timeBase)
+      expect(startCounter).toHaveBeenCalledWith(taskTime)
     },
   )
 
-  const casesContext: [ActivityType, jest.Mock][] = [
-    ['foo', incrementFoo],
-    ['bar', incrementBar],
-    ['foobar', buildFoobar],
-    ['robot', buyRobot],
+  const casesContext: [ActivityName, jest.Mock][] = [
+    [ActivityName.foo, incrementFoo],
+    [ActivityName.bar, incrementBar],
+    [ActivityName.foobar, buildFoobar],
+    [ActivityName.robot, buyRobot],
   ]
 
   it.each(casesContext)(
     'should update %s context when status is "done"',
-    (activityName: ActivityType, contextFn: jest.Mock) => {
+    (activityName: ActivityName, contextFn: jest.Mock) => {
       useTimerMock
         .mockReturnValue({
           startCounter,
@@ -159,30 +157,30 @@ describe('useActivity', () => {
     const { startActivity } = result.current
 
     act(() => {
-      startActivity('moving', 'bar')
+      startActivity(ActivityName.moving, ActivityName.bar)
       // Fast forward so the timeout of 500ms is done
       jest.advanceTimersByTime(600)
     })
 
-    expect(result.current.currentActivity).toBe('bar')
+    expect(result.current.currentActivity).toBe(ActivityName.bar)
     expect(startCounter).toHaveBeenCalledTimes(2)
   })
 
-  const casesResult: [ActivityType, Status][] = [
-    ['foo', Status.success],
-    ['bar', Status.success],
-    ['foobar', Status.success],
-    ['robot', Status.success],
-    ['moving', Status.success],
-    ['foo', Status.failure],
-    ['bar', Status.failure],
-    ['foobar', Status.failure],
-    ['robot', Status.failure],
-    ['moving', Status.failure],
+  const casesResult: [ActivityName, Status][] = [
+    [ActivityName.foo, Status.success],
+    [ActivityName.bar, Status.success],
+    [ActivityName.foobar, Status.success],
+    [ActivityName.robot, Status.success],
+    [ActivityName.moving, Status.success],
+    [ActivityName.foo, Status.failure],
+    [ActivityName.bar, Status.failure],
+    [ActivityName.foobar, Status.failure],
+    [ActivityName.robot, Status.failure],
+    [ActivityName.moving, Status.failure],
   ]
   it.each(casesResult)(
     'should return the %s %s info',
-    (activityName: ActivityType, activityResult: string) => {
+    (activityName: ActivityName, activityResult: string) => {
       useRobotsContextMock.mockReturnValue({
         buildFoobar,
         buyRobot,
@@ -214,10 +212,10 @@ describe('useActivity', () => {
     },
   )
 
-  const casesRepeat: ActivityType[] = ['foo', 'bar']
+  const casesRepeat: ActivityName[] = [ActivityName.foo, ActivityName.bar]
   it.each(casesRepeat)(
     'should repeat startCounter when activity is %s',
-    (activityName: ActivityType) => {
+    (activityName: ActivityName) => {
       useTimerMock
         .mockReturnValue({
           startCounter,
@@ -269,7 +267,7 @@ describe('useActivity', () => {
     const { startActivity } = result.current
 
     act(() => {
-      startActivity('foobar')
+      startActivity(ActivityName.foobar)
       // Fast forward so the timeout of 500ms is done
       jest.advanceTimersByTime(600)
     })
@@ -304,7 +302,7 @@ describe('useActivity', () => {
     const { startActivity } = result.current
 
     act(() => {
-      startActivity('foobar')
+      startActivity(ActivityName.foobar)
       // Fast forward so the timeout of 500ms is done
       jest.advanceTimersByTime(600)
     })
@@ -312,32 +310,18 @@ describe('useActivity', () => {
     expect(startCounter).toHaveBeenCalledTimes(1)
   })
 
-  it('should call stopCounter and reset all value to default when resultStatus.reset is success', () => {
-    useRobotsContextMock
-      .mockReturnValue({
-        buildFoobar,
-        buyRobot,
-        incrementBar,
-        incrementFoo,
-        resultStatus: { ...defaultStatus, reset: Status.success },
-      })
-      .mockReturnValueOnce({
-        buildFoobar,
-        buyRobot,
-        incrementBar,
-        incrementFoo,
-        resultStatus: { ...defaultStatus, foo: Status.success },
-      })
+  it('should call stopCounter and reset all value to default when cleanActivity is called', () => {
     const { result } = renderHook(useActivity)
-    const { startActivity } = result.current
+    const { startActivity, cleanActivity } = result.current
 
     act(() => {
-      startActivity('foo')
+      startActivity(ActivityName.foo)
+      cleanActivity()
     })
 
     expect(stopCounter).toHaveBeenCalledTimes(1)
     expect(result.current.currentInfo).toEqual(emptyInfo)
     expect(result.current.currentActivity).toEqual(undefined)
-    expect(result.current.timeBase).toEqual(0)
+    expect(result.current.taskTime).toEqual(0)
   })
 })

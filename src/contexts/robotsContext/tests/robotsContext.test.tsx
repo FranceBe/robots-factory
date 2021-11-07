@@ -6,7 +6,7 @@ import {
   defaultStatus,
 } from 'contexts/robotsContext/robotsContext.variables'
 import React from 'react'
-import { Status } from 'utils/common.variables'
+import { Status } from 'utils/common.enum'
 
 const Wrapper: React.FC = ({ children, ...props }) => (
   <RobotsContextProvider {...props}>{children}</RobotsContextProvider>
@@ -148,5 +148,22 @@ describe('useRobotsContext', () => {
     expect(result.current.foo).toBe(defaultRobotsResources.foo)
     expect(result.current.foobar).toBe(defaultRobotsResources.foobar)
     expect(result.current.robot).toBe(defaultRobotsResources.robot)
+  })
+  it('should provide a cleanReset function that reset status to its default values', () => {
+    jest.spyOn(global.Math, 'random').mockReturnValue(0.8)
+    // Math.random is mocked to return 0.8 so hasFoobarSucceeded() returns false
+    const initialProps = {
+      bar: 1,
+      foo: 1,
+      foobar: 3,
+      robot: 5,
+    }
+    const { result } = initTest(initialProps)
+
+    act(() => {
+      result.current.cleanReset()
+    })
+
+    expect(result.current.resultStatus).toBe(defaultStatus)
   })
 })

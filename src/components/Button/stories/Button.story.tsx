@@ -4,7 +4,7 @@ import { ButtonProps } from 'components/Button/button'
 import React from 'react'
 import styled from 'styled-components'
 import { spaces } from 'styles/variables'
-import { ThemeType } from 'utils/common.variables'
+import { ThemeType } from 'utils/common.enum'
 
 const StoryContainer = styled.div`
   flex-direction: column;

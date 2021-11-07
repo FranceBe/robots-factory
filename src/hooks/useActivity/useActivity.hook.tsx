@@ -1,105 +1,87 @@
 // Use activity hook handles the behaviour for each activity, it starts the activity & update context
 // When activity is done
 import { useRobotsContext } from 'contexts/robotsContext'
-import { ActivityType, InfoType } from 'hooks/useActivity/useActivity'
+import { ActivityType, InfoType, UseActivityType } from 'hooks/useActivity/useActivity'
 import { getBarTime } from 'hooks/useActivity/useActivity.utils'
-import {
-  emptyInfo,
-  infoByActivity,
-  nameByActivity,
-  statusTimer,
-  timeBaseByActivity,
-} from 'hooks/useActivity/useActivity.variables'
+import { emptyInfo, infoByActivity } from 'hooks/useActivity/useActivity.variables'
 import { useTimer } from 'hooks/useTimer'
 import { useEffect, useState } from 'react'
-import { requirement, Status } from 'utils/common.variables'
+import { ActivityName, TimerStatus } from 'utils/common.enum'
+import { requirement, taskTimeByActivity } from 'utils/settings'
 
-export const useActivity = (): {
-  currentActivity: ActivityType
-  currentInfo: InfoType
-  startActivity: (activity: ActivityType, futureActivity?: ActivityType) => void
-  timeBase: number
-  timeLeft: number
-} => {
+export const useActivity = (): UseActivityType => {
   // Use useTimer hook
   const { timeLeft, startCounter, status, stopCounter } = useTimer()
 
   // Use useRobotContext hook
-  const { buildFoobar, buyRobot, incrementBar, incrementFoo, resultStatus, foo, bar } =
+  const { buildFoobar, buyRobot, incrementBar, incrementFoo, resultStatus, foo, bar, cleanReset } =
     useRobotsContext()
 
   const [currentActivity, setCurrentActivity] = useState<ActivityType>()
   const [futureActivity, setFutureActivity] = useState<ActivityType>()
   const [currentInfo, setCurrentInfo] = useState<InfoType>(emptyInfo)
-  const [barTimeBase, setBarTimeBase] = useState(getBarTime())
-  const [timeBase, setTimeBase] = useState<number>(0)
+  const [taskTime, setTimeBase] = useState<number>(0)
 
   useEffect(() => {
     let timer: NodeJS.Timer
-    if (status === statusTimer.done) {
-      // When timer is done, set activity results
+    const activityIsDone = status === TimerStatus.done
+
+    if (activityIsDone) {
+      // When timer is done, call onActivityEnd
       onActivityEnd(currentActivity)
     }
 
-    if (status === statusTimer.done && currentActivity === nameByActivity.moving) {
-      // Start future activity when robot has moved
-      timer = setTimeout(() => startActivity(futureActivity), 500)
-    }
+    const isMoving = currentActivity === ActivityName.moving
+    const isBuildingFoobar = currentActivity === ActivityName.foobar
+    const hasEnoughResourcesForFoobar = foo > requirement.foobar.foo && bar > requirement.foobar.bar
 
-    if (status === statusTimer.done && currentActivity === nameByActivity.foo) {
-      // Start Foo activity again, repeatedly 500ms after the end of previous Foo activity
-      timer = setTimeout(() => startActivity(currentActivity), 500)
-    }
+    if (
+      activityIsDone &&
+      (isMoving ||
+        currentActivity === ActivityName.foo ||
+        currentActivity === ActivityName.bar ||
+        isBuildingFoobar)
+    ) {
+      // If robot is moving, it should start the futureActivity
+      // If the robot is not moving, it should start again current activity
+      const activityToStart = isMoving ? futureActivity : currentActivity
 
-    if (status === statusTimer.done && currentActivity === nameByActivity.bar) {
-      // Start Bar activity again, repeatedly 500ms after the end of previous Bar activity
-      timer = setTimeout(() => startActivity(currentActivity), 500)
-    }
-
-    if (status === statusTimer.done && currentActivity === nameByActivity.foobar) {
-      if (foo > requirement.foobar.foo && bar > requirement.foobar.bar) {
-        // Start Bar activity again, repeatedly 500ms after the end of previous Bar activity
-        // If there is enough resources
-        timer = setTimeout(() => startActivity(currentActivity), 500)
+      // If robot is moving, mining Foo or mining Bar then start activity after 500ms
+      // If roboto is building a Foobar, start activity after 500ms only if there are enough resources
+      if (!isBuildingFoobar || (isBuildingFoobar && hasEnoughResourcesForFoobar)) {
+        timer = setTimeout(() => startActivity(activityToStart), 500)
       }
     }
     return () => clearTimeout(timer)
   }, [status])
 
   useEffect(() => {
-    if (status === statusTimer.done) {
+    if (status === TimerStatus.done) {
       // Update the icon and text info after an activity is done
       setResultInfo(currentActivity)
-    }
-    if (resultStatus.reset === Status.success) {
-      // Clean states and stop counter when resultStatus is null
-      stopCounter()
-      setTimeBase(0)
-      setCurrentInfo(emptyInfo)
-      setCurrentActivity(undefined)
     }
   }, [resultStatus, status])
 
   const startActivity = (activity: ActivityType, futureActivity?: ActivityType): void => {
     if (activity) {
-      // By default, timeBase is provided by the object timeBaseByActivity
-      let timeBaseForActivity: number = timeBaseByActivity[activity]
+      // By default, taskTime is provided by the object taskTimeByActivity
+      let taskTimeForActivity: number = taskTimeByActivity[activity]
 
       setCurrentActivity(activity)
       setCurrentInfo(infoByActivity[activity].current)
 
-      if (activity === nameByActivity.bar) {
-        // If activity is "bar", timeBase is calculated with getBarTime() and stored in
+      if (activity === ActivityName.bar) {
+        // If activity is "bar", taskTime is calculated with getBarTime() and stored in
         // barTimeBase state
-        timeBaseForActivity = barTimeBase
+        taskTimeForActivity = getBarTime()
       }
-      // Update state timeBase
-      setTimeBase(timeBaseForActivity)
+      // Update state taskTime
+      setTimeBase(taskTimeForActivity)
       // Start counter
-      startCounter(timeBaseForActivity)
+      startCounter(taskTimeForActivity)
     }
 
-    if (activity === nameByActivity.moving && futureActivity) {
+    if (activity === ActivityName.moving && futureActivity) {
       // If robot is moving and a future activity is provided,
       // store the future activity in state
       setFutureActivity(futureActivity)
@@ -109,20 +91,19 @@ export const useActivity = (): {
   const onActivityEnd = (activity: ActivityType): void => {
     // Update context depending on the provided activity
     if (activity) {
-      if (activity === nameByActivity.foo) {
+      if (activity === ActivityName.foo) {
         incrementFoo()
       }
 
-      if (activity === nameByActivity.bar) {
-        setBarTimeBase(getBarTime())
+      if (activity === ActivityName.bar) {
         incrementBar()
       }
 
-      if (activity === nameByActivity.foobar) {
+      if (activity === ActivityName.foobar) {
         buildFoobar()
       }
 
-      if (activity === nameByActivity.robot) {
+      if (activity === ActivityName.robot) {
         buyRobot()
       }
     }
@@ -134,11 +115,21 @@ export const useActivity = (): {
       setCurrentInfo(infoByActivity[activity][resultStatus[activity]])
     }
   }
+
+  const cleanActivity = () => {
+    stopCounter()
+    setTimeBase(0)
+    setCurrentInfo(emptyInfo)
+    setCurrentActivity(undefined)
+    cleanReset()
+  }
+
   return {
+    cleanActivity,
     currentActivity,
     currentInfo,
     startActivity,
-    timeBase,
+    taskTime,
     timeLeft,
   }
 }

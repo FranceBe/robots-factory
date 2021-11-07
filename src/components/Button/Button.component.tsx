@@ -5,7 +5,7 @@ import { Icon } from 'components/Icon'
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
 import { palette } from 'styles/variables'
-import { ThemeType } from 'utils/common.variables'
+import { IconEnum, ThemeType } from 'utils/common.enum'
 
 export const Button: React.FC<ButtonProps> = ({
   buttonType = ThemeType.primary,
@@ -26,7 +26,7 @@ export const Button: React.FC<ButtonProps> = ({
     >
       <ButtonContainer buttontype={ThemeType[buttonType]} {...rest}>
         <ContentContainer>{rest.children}</ContentContainer>
-        {isActive && <Icon type={'robot'} />}
+        {isActive && <Icon type={IconEnum.robot} />}
         {tooltipText && (
           <ReactTooltip
             html={true}
