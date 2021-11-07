@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`variables fontSizes should match snapshot 1`] = `
+Object {
+  "large": "1.5rem",
+  "medium": "1.125rem",
+  "regular": "1rem",
+  "small": "0.875rem",
+}
+`;
+
+exports[`variables palette should match snapshot 1`] = `
+Object {
+  "blue_primary": "#279AF1",
+  "blue_secondary": "#1B6CA9",
+  "blue_tertiary": "#68B8F5",
+  "green_primary": "#45B69C",
+  "grey_primary": "#6A6C71",
+  "grey_quaternary": "#E5E5E5",
+  "grey_secondary": "#B3B3B3",
+  "grey_tertiary": "#D4D5D6",
+  "pink_primary": "#DB93B0",
+  "pink_secondary": "#99677B",
+  "pink_tertiary": "#E6B3C8",
+  "red_primary": "#F45B69",
+  "white": "#FFF",
+}
+`;
+
+exports[`variables spaces should match snapshot 1`] = `
+Object {
+  "large": "32px",
+  "medium": "24px",
+  "regular": "16px",
+  "small": "8px",
+  "x_large": "40px",
+  "x_small": "4px",
+  "xx_large": "64px",
+}
+`;

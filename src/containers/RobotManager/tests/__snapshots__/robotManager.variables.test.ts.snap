@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RobotManager variables requirementsForAFoobar should match snapshot 1`] = `
+Object {
+  "bar": 1,
+  "foo": 1,
+}
+`;
+
+exports[`RobotManager variables requirementsForARobot should match snapshot 1`] = `
+Object {
+  "foo": 6,
+  "foobar": 3,
+}
+`;
+
+exports[`RobotManager variables tooltipTexts should match snapshot 1`] = `
+Object {
+  "foobar": "<p>Requiert <span class=\\"foobar-foo\\">1 Foo</span> et <span class=\\"foobar-bar\\">1 Bar</span>.</p>",
+  "robot": "<p>Requiert <span class=\\"robot-foobar\\">3 Foobar</span>  et <span class=\\"robot-foo\\">6 Foo</span>.</p>",
+}
+`;

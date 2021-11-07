@@ -1,0 +1,129 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`useActivity variables emptyInfo should match snapshot 1`] = `
+Object {
+  "iconInfo": undefined,
+  "textInfo": "",
+}
+`;
+
+exports[`useActivity variables infoByActivity should match snapshot 1`] = `
+Object {
+  "bar": Object {
+    "current": Object {
+      "iconInfo": Object {
+        "spin": true,
+        "type": "spinner",
+      },
+      "textInfo": "Le robot est en train de miner du Bar. Cela prend entre 0.5 et 2s / Bar.",
+    },
+    "failure": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+    "success": Object {
+      "iconInfo": Object {
+        "color": "#45B69C",
+        "type": "success",
+      },
+      "textInfo": "Le robot a fini d'assembler un Bar.",
+    },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+  },
+  "foo": Object {
+    "current": Object {
+      "iconInfo": Object {
+        "spin": true,
+        "type": "spinner",
+      },
+      "textInfo": "Le robot est en train de miner du Foo. Cela prend 1s / Foo.",
+    },
+    "failure": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+    "success": Object {
+      "iconInfo": Object {
+        "color": "#45B69C",
+        "type": "success",
+      },
+      "textInfo": "Le robot a fini d'assembler un Foo.",
+    },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+  },
+  "foobar": Object {
+    "current": Object {
+      "iconInfo": Object {
+        "spin": true,
+        "type": "spinner",
+      },
+      "textInfo": "Le robot est en train d'assembler un Foobar. Cela prend 2s et a 60% de chance de succès.",
+    },
+    "failure": Object {
+      "iconInfo": Object {
+        "color": "#F45B69",
+        "type": "failure",
+      },
+      "textInfo": "Echec : Le robot n'a pas assemblé de Foobar, le Bar a pu être sauvé mais le Foo est perdu.",
+    },
+    "success": Object {
+      "iconInfo": Object {
+        "color": "#45B69C",
+        "type": "success",
+      },
+      "textInfo": "Succès : Le robot a fini d'assembler un Foobar.",
+    },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+  },
+  "moving": Object {
+    "current": Object {
+      "iconInfo": Object {
+        "type": "moving",
+      },
+      "textInfo": "Le robot est en train de changer d'activité. Cela prend 5s.",
+    },
+    "failure": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+    "success": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+  },
+  "robot": Object {
+    "current": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+    "failure": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+    "success": Object {
+      "iconInfo": Object {
+        "color": "#45B69C",
+        "type": "success",
+      },
+      "textInfo": "Succès : Le robot a acheté un nouveau robot.",
+    },
+    "undone": Object {
+      "iconInfo": undefined,
+      "textInfo": "",
+    },
+  },
+}
+`;
